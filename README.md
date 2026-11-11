@@ -220,7 +220,7 @@ Disconnect from the network (Wi-Fi off, cable out), then launch the app and conf
 
 | # | Role | Owner | Responsibilities | Main deliverables |
 |---|---|---|---|---|
-| 1 | **Project Lead and Pitch** | @[smMazibuko](https://github.com/smMazibuko) | Keeps scope under control, manages the board and merges, owns the demo script and pitch deck, writes docs | README, pitch deck, demo script, final demo |
+| 1 | **Project Lead and Pitch** | @[Sphiwe](https://github.com/smMazibuko) | Keeps scope under control, manages the board and merges, owns the demo script and pitch deck, writes docs | README, pitch deck, demo script, final demo |
 | 2 | **UI Lead (Qt)** | @[Caitlyne](https://github.com/Allison-kk) | Main window, navigation, theme and stylesheet, dashboard, reusable widgets, space-themed look | Main window, Dashboard page, UI kit |
 | 3 | **Vitals Tracking (Track)** | @[Lethabo](https://github.com/ST10448170) | Input forms for heart rate, blood pressure, sleep, mood and symptoms; input validation; history table; trend charts | Track page, charts, validation |
 | 4 | **Alerts Engineer (Alert)** | @[Sunday](https://github.com/ST10394012) | Reference ranges, analysis logic, warning levels (Normal, Caution, Urgent), trend detection, unit tests | `alert_engine`, `ranges.json`, tests, alert banner widget |
