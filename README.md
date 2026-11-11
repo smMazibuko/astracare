@@ -61,11 +61,11 @@ Astracare is designed to help astronauts:
 
 | Feature | Description |
 |---|---|
-| 📈 **Track** | Log and monitor vital signs and wellbeing (heart rate, blood pressure, sleep, mood, symptoms). |
-| 📚 **Guide** | Browse stored medical guidance and procedures, fully offline. |
-| 🚨 **Alert** | Flag unusual health readings and trends against configurable reference ranges. |
-| 📝 **Report** | Save health history and generate medical reports to send to Earth when communication is available. |
-| 🆘 **Respond** | Step-by-step emergency support procedures for urgent situations. |
+| **Track** | Log and monitor vital signs and wellbeing (heart rate, blood pressure, sleep, mood, symptoms). |
+| **Guide** | Browse stored medical guidance and procedures, fully offline. |
+| **Alert** | Flag unusual health readings and trends against configurable reference ranges. |
+| **Report** | Save health history and generate medical reports to send to Earth when communication is available. |
+| **Respond** | Step-by-step emergency support procedures for urgent situations. |
 
 ---
 
@@ -102,25 +102,6 @@ An astronaut on a mission to Mars suddenly feels dizzy and tired.
 
 ---
 
-## Tech Stack
-
-> *Suggested stack. Update this section to match what the team actually builds.*
-
-| Layer | Technology |
-|---|---|
-| Frontend | React + TypeScript (Vite) |
-| Styling | Tailwind CSS |
-| Charts | Recharts |
-| Offline support | Progressive Web App (service worker + manifest) |
-| Local storage | IndexedDB via Dexie.js |
-| Report export | jsPDF (PDF) / JSON export |
-| Testing | Vitest + React Testing Library |
-| Hosting (demo) | Vercel / GitHub Pages |
-
-**Why offline-first?** Every core feature (tracking, alerts, guidance, reports) must work with **zero network access**. Data lives on the device, and nothing depends on a server.
-
----
-
 ## Project Structure
 
 ```
@@ -146,33 +127,6 @@ astracare/
 ---
 
 ## Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- npm or pnpm
-
-### Installation
-
-```bash
-git clone https://github.com/<your-org>/astracare.git
-cd astracare
-npm install
-npm run dev
-```
-
-The app runs at `http://localhost:5173`.
-
-### Build and test offline mode
-
-```bash
-npm run build
-npm run preview
-```
-
-Open the preview, load the app once, then switch your browser to **Offline** (DevTools, Network tab) and confirm everything still works.
-
----
 
 ## Team and Task Division
 
