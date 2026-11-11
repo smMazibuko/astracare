@@ -226,12 +226,12 @@ Disconnect from the network (Wi-Fi off, cable out), then launch the app and conf
 
 | #   | Role                                                  | Owner   | Responsibilities                                                                                                                 | Main deliverables                                           |
 | --- | ----------------------------------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| 1   | **Project Lead and Pitch**                            | `@name` | Keeps scope under control, manages the board and merges, owns the demo script and pitch deck, writes docs                        | README, pitch deck, demo script, final demo                 |
-| 2   | **UI Lead (Qt)**                                      | `@name` | Main window, navigation, theme and stylesheet, dashboard, reusable widgets, space-themed look                                    | Main window, Dashboard page, UI kit                         |
-| 3   | **Vitals Tracking (Track)**                           | `@name` | Input forms for heart rate, blood pressure, sleep, mood and symptoms; input validation; history table; trend charts              | Track page, charts, validation                              |
-| 4   | **Alerts Engineer (Alert)**                           | `@name` | Reference ranges, analysis logic, warning levels (Normal, Caution, Urgent), trend detection, unit tests                          | `alert_engine`, `ranges.json`, tests, alert banner widget   |
-| 5   | **Medical Content and Emergency (Guide and Respond)** | `@name` | Research and write offline guidance from reputable sources, build step-by-step emergency procedures, searchable guidance library | Guidance JSON, Guide page, Emergency page, source list      |
-| 6   | **Storage, Build and Reports (Report)**               | `@name` | CMake setup, SQLite schema and data layer, report generation and export (PDF/JSON), CI, offline QA                               | `database`, Report page, export, CMake and CI, QA checklist |
+| 1   | **Project Lead and Pitch**                            | `@[smMazibuko](https://github.com/smMazibuko)` | Keeps scope under control, manages the board and merges, owns the demo script and pitch deck, writes docs                        | README, pitch deck, demo script, final demo                 |
+| 2   | **UI Lead (Qt)**                                      | `@[Caitlyne](https://github.com/Allison-kk)` | Main window, navigation, theme and stylesheet, dashboard, reusable widgets, space-themed look                                    | Main window, Dashboard page, UI kit                         |
+| 3   | **Vitals Tracking (Track)**                           | `@[Lethabo](https://github.com/ST10448170)` | Input forms for heart rate, blood pressure, sleep, mood and symptoms; input validation; history table; trend charts              | Track page, charts, validation                              |
+| 4   | **Alerts Engineer (Alert)**                           | `@[Sunday](https://github.com/ST10394012)` | Reference ranges, analysis logic, warning levels (Normal, Caution, Urgent), trend detection, unit tests                          | `alert_engine`, `ranges.json`, tests, alert banner widget   |
+| 5   | **Medical Content and Emergency (Guide and Respond)** | `@[Zandile](https://github.com/Nkateko-Zandi)` | Research and write offline guidance from reputable sources, build step-by-step emergency procedures, searchable guidance library | Guidance JSON, Guide page, Emergency page, source list      |
+| 6   | **Storage, Build and Reports (Report)**               | `@[Madiki](https://github.com/Caleb1128)` | CMake setup, SQLite schema and data layer, report generation and export (PDF/JSON), CI, offline QA                               | `database`, Report page, export, CMake and CI, QA checklist |
 
 ### How the pieces connect
 
@@ -296,14 +296,14 @@ Astracare is a hackathon prototype for educational and demonstration purposes. I
 
 ## Team
 
-| Name   | Role                          | GitHub                                   |
-| ------ | ----------------------------- | ---------------------------------------- |
-| _Name_ | Project Lead and Pitch        | [@username](https://github.com/username) |
-| _Name_ | UI Lead (Qt)                  | [@username](https://github.com/username) |
-| _Name_ | Vitals Tracking               | [@username](https://github.com/username) |
-| _Name_ | Alerts Engineer               | [@username](https://github.com/username) |
-| _Name_ | Medical Content and Emergency | [@username](https://github.com/username) |
-| _Name_ | Storage, Build and Reports    | [@username](https://github.com/username) |
+| Name       | Role                          |
+| -----------| ------------------------------|
+| _Sphiwe_   | Project Lead and Pitch        |
+| _Caitlyne_ | UI Lead (Qt)                  |
+| _Lethabo_  | Vitals Tracking               |
+| _Sunday_   | Alerts Engineer               |
+| _Zandile_  | Medical Content and Emergency |
+| _Madiki_   | Storage, Build and Reports    |
 
 ---
 
