@@ -1,0 +1,13 @@
+{
+  "_note": "PLACEHOLDER entry showing the format. Role 5 replaces this with researched, sourced content.",
+  "entries": [
+    {
+      "id": "cardiac-001",
+      "title": "Sample: High heart rate",
+      "category": "cardiac",
+      "summary": "Placeholder summary.",
+      "steps": ["Placeholder step 1", "Placeholder step 2"],
+      "source": "TODO"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "_note": "PLACEHOLDER structure only. Role 4 fills in reviewed reference ranges with sources.",
+  "heartRate": { "unit": "bpm", "caution": [null, null], "urgent": [null, null] },
+  "bloodPressure": { "unit": "mmHg", "caution": [null, null], "urgent": [null, null] },
+  "sleepHours": { "unit": "hours", "caution": [null, null], "urgent": [null, null] }
+}
