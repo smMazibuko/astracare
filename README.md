@@ -6,7 +6,7 @@
 
 Astracare is an **offline-first health monitoring app** that helps astronauts track their health, recognise potential problems early, and access reliable medical guidance when help from Earth is minutes (or hours) away.
 
-> ⚠️ **Astracare supports astronauts; it does not replace doctors.** The app provides health guidance and alerts, not medical diagnoses.
+>  **Astracare supports astronauts; it does not replace doctors.** The app provides health guidance and alerts, not medical diagnoses.
 
 ---
 
@@ -126,7 +126,11 @@ astracare/
 
 ---
 
-## Getting Started
+## Tech Stack
+
+To be determined in meeting
+
+---
 
 ## Team and Task Division
 
