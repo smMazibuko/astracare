@@ -193,7 +193,7 @@ astracare/
 
 ### ⚡ Quick Start (TL;DR)
 
-If you already have **CMake 3.20+**, a **C++17 compiler**, and **Qt 6** installed:
+The core application and storage layers build without Qt. You only need **CMake 3.20+**, a **C++17 compiler**, and **Git**:
 
 ```bash
 # 1. Clone the repository
@@ -203,18 +203,10 @@ cd astracare
 # 2. Configure build files with CMake (Release mode)
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 
-# 3. Compile the application and test suite
+# 3. Compile the core, storage, and test targets
 cmake --build build --config Release --parallel
 
-# 4. Launch Astracare
-# Linux / macOS:
-./build/ui/astracare
-# Windows (Visual Studio / MSVC multi-config):
-.\build\ui\Release\astracare.exe
-# Windows (Ninja / MinGW single-config):
-.\build\ui\astracare.exe
-
-# 5. Run the unit test suite
+# 4. Run the unit test suite
 ctest --test-dir build --output-on-failure -C Release
 ```
 
@@ -228,7 +220,6 @@ Before building Astracare, ensure your machine satisfies the following requireme
 |---|---|---|
 | **C++ Compiler** | C++17 support | MSVC 2019+ (Windows), GCC 9+ (Linux), or Clang 10+ (macOS/Linux) |
 | **CMake** | 3.20 or newer | Cross-platform build system |
-| **Qt 6 Framework** | Qt 6.2+ recommended | Requires `Widgets`, `Charts`, and `Sql` modules |
 | **SQLite** | 3.x | Local health data storage engine |
 | **Git** | 2.x | Version control & automated dependency management (Catch2) |
 
@@ -244,16 +235,7 @@ Before building Astracare, ensure your machine satisfies the following requireme
    ```powershell
    winget install Kitware.CMake Git.Git
    ```
-3. **Qt 6**:
-   - Download and run the [Qt Online Installer](https://www.qt.io/download-qt-installer).
-   - Under custom installation, select **Qt 6.x for MSVC 2019 64-bit**.
-   - Under **Additional Libraries**, make sure **Qt Charts** is checked.
-   - Set the `CMAKE_PREFIX_PATH` environment variable so CMake locates Qt 6:
-     ```powershell
-     # PowerShell (adjust path to match your installed version)
-     $env:CMAKE_PREFIX_PATH="C:\Qt\6.6.3\msvc2019_64"
-     ```
-   - *(Optional but recommended)* Add `C:\Qt\6.x.x\msvc2019_64\bin` to your system `PATH` to resolve Qt runtime DLLs when executing directly from the terminal or File Explorer.
+3. Qt is **not required** for the core branch. It is only needed when explicitly building the optional desktop UI with `-DASTRACARE_BUILD_UI=ON`.
 </details>
 
 <details>
@@ -322,7 +304,7 @@ cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 
 | CMake Flag | Default | Description |
 |---|---|---|
-| `-DASTRACARE_BUILD_UI=ON/OFF` | `ON` | Compiles the Qt desktop GUI application (`astracare`). |
+| `-DASTRACARE_BUILD_UI=ON/OFF` | `OFF` | Optionally compiles the Qt desktop GUI application (`astracare`). |
 | `-DASTRACARE_BUILD_TESTS=ON/OFF` | `ON` | Fetches Catch2 and compiles the unit test suite (`astracare_tests`). |
 | `-DCMAKE_PREFIX_PATH=<path>` | Auto | Path to Qt 6 CMake directory if not detected automatically. |
 
@@ -331,10 +313,12 @@ cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake -S . -B build -DASTRACARE_BUILD_UI=OFF
 ```
 
-*Example (Specifying Qt prefix path on Windows):*
+*Example (enabling the optional Qt UI on Windows):*
 ```powershell
-cmake -S . -B build -DCMAKE_PREFIX_PATH="C:/Qt/6.6.3/msvc2019_64"
+cmake -S . -B build -DASTRACARE_BUILD_UI=ON -DCMAKE_PREFIX_PATH="C:/Qt/6.6.3/msvc2022_64"
 ```
+
+Qt is not needed for the default core build. Install Qt 6 with Widgets and Charts only if you need the desktop UI.
 
 #### 3. Compile the Application
 Compile all enabled targets in parallel:
@@ -345,7 +329,7 @@ cmake --build build --config Release --parallel
 
 ---
 
-### Running the Application
+### Running the Optional Desktop Application
 
 Launch the compiled Astracare executable:
 

@@ -1,4 +1,4 @@
-find_package(Qt6 REQUIRED COMPONENTS Widgets Charts)
+find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
 set(CMAKE_AUTOMOC ON)
 
@@ -20,7 +20,6 @@ qt_add_executable(astracare
 target_include_directories(astracare PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(astracare PRIVATE
     Qt6::Widgets
-    Qt6::Charts
     astracare::core
     astracare::storage
 )
