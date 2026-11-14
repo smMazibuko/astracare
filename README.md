@@ -20,7 +20,7 @@ Astracare is an **offline-first health monitoring app**, written in **C++**, tha
 6. [Tech Stack](#-tech-stack)
 7. [Architecture](#-architecture)
 8. [Project Structure](#-project-structure)
-9. [Getting Started](#-getting-started)
+9. [Getting Started / Quick Start](#getting-started)
 10. [Team and Task Division](#-team-and-task-division)
 11. [Hackathon Timeline](#-hackathon-timeline)
 12. [Git Workflow and Code Standards](#-git-workflow-and-code-standards)
@@ -185,34 +185,239 @@ astracare/
 
 ---
 
-## Getting Started
+<a id="getting-started"></a>
+<a id="-getting-started"></a>
+<a id="quick-start"></a>
 
-### Prerequisites
+## Getting Started / Quick Start
 
-- A C++17-capable compiler (GCC 9+, Clang 10+ or MSVC 2019+)
-- CMake 3.20+
-- Qt 6 (with the Widgets, Charts and Sql modules)
+### ⚡ Quick Start (TL;DR)
 
-### Build and run
+If you already have **CMake 3.20+**, a **C++17 compiler**, and **Qt 6** installed:
 
 ```bash
-git clone https://github.com/<your-org>/astracare.git
+# 1. Clone the repository
+git clone https://github.com/smMazibuko/astracare.git
 cd astracare
+
+# 2. Configure build files with CMake (Release mode)
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build
-./build/ui/astracare          # on Windows: build\ui\Release\astracare.exe
+
+# 3. Compile the application and test suite
+cmake --build build --config Release --parallel
+
+# 4. Launch Astracare
+# Linux / macOS:
+./build/ui/astracare
+# Windows (Visual Studio / MSVC multi-config):
+.\build\ui\Release\astracare.exe
+# Windows (Ninja / MinGW single-config):
+.\build\ui\astracare.exe
+
+# 5. Run the unit test suite
+ctest --test-dir build --output-on-failure -C Release
 ```
 
-### Run the tests
+---
+
+### Prerequisites & System Requirements
+
+Before building Astracare, ensure your machine satisfies the following requirements:
+
+| Component | Minimum Version | Notes |
+|---|---|---|
+| **C++ Compiler** | C++17 support | MSVC 2019+ (Windows), GCC 9+ (Linux), or Clang 10+ (macOS/Linux) |
+| **CMake** | 3.20 or newer | Cross-platform build system |
+| **Qt 6 Framework** | Qt 6.2+ recommended | Requires `Widgets`, `Charts`, and `Sql` modules |
+| **SQLite** | 3.x | Local health data storage engine |
+| **Git** | 2.x | Version control & automated dependency management (Catch2) |
+
+---
+
+### Installing Dependencies
+
+<details open>
+<summary><b>Windows (Visual Studio 2022 / MSVC)</b></summary>
+
+1. **Compiler**: Install [Visual Studio 2022](https://visualstudio.microsoft.com/) with the **"Desktop development with C++"** workload selected.
+2. **CMake & Git**: If not already installed, run via PowerShell:
+   ```powershell
+   winget install Kitware.CMake Git.Git
+   ```
+3. **Qt 6**:
+   - Download and run the [Qt Online Installer](https://www.qt.io/download-qt-installer).
+   - Under custom installation, select **Qt 6.x for MSVC 2019 64-bit**.
+   - Under **Additional Libraries**, make sure **Qt Charts** is checked.
+   - Set the `CMAKE_PREFIX_PATH` environment variable so CMake locates Qt 6:
+     ```powershell
+     # PowerShell (adjust path to match your installed version)
+     $env:CMAKE_PREFIX_PATH="C:\Qt\6.6.3\msvc2019_64"
+     ```
+   - *(Optional but recommended)* Add `C:\Qt\6.x.x\msvc2019_64\bin` to your system `PATH` to resolve Qt runtime DLLs when executing directly from the terminal or File Explorer.
+</details>
+
+<details>
+<summary><b>Linux (Ubuntu / Debian / Pop!_OS)</b></summary>
+
+Install the compiler toolchain, CMake, SQLite, and Qt 6 with Widgets & Charts development headers:
 
 ```bash
-cd build
-ctest --output-on-failure
+sudo apt update
+sudo apt install -y \
+    build-essential \
+    cmake \
+    git \
+    qt6-base-dev \
+    libqt6charts6-dev \
+    qt6-charts-dev \
+    libsqlite3-dev
 ```
 
-### Check offline mode
+*Fedora:*
+```bash
+sudo dnf install gcc-c++ cmake git qt6-qtbase-devel qt6-qtcharts-devel sqlite-devel
+```
 
-Disconnect from the network (Wi-Fi off, cable out), then launch the app and confirm that every page, alert, guidance entry and report export still works.
+*Arch Linux:*
+```bash
+sudo pacman -S base-devel cmake git qt6-base qt6-charts sqlite
+```
+</details>
+
+<details>
+<summary><b>macOS (Homebrew)</b></summary>
+
+Install prerequisites using Homebrew:
+
+```bash
+# Install Xcode Command Line Tools if not already present
+xcode-select --install
+
+# Install CMake, Git, and Qt 6
+brew install cmake git qt@6
+
+# Configure CMAKE_PREFIX_PATH so CMake can discover Qt 6
+export CMAKE_PREFIX_PATH=$(brew --prefix qt@6)
+```
+</details>
+
+---
+
+### Step-by-Step Build Guide
+
+#### 1. Clone the Repository
+```bash
+git clone https://github.com/smMazibuko/astracare.git
+cd astracare
+```
+
+#### 2. Configure with CMake
+Generate build files using CMake:
+
+```bash
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+```
+
+##### CMake Build Options:
+
+| CMake Flag | Default | Description |
+|---|---|---|
+| `-DASTRACARE_BUILD_UI=ON/OFF` | `ON` | Compiles the Qt desktop GUI application (`astracare`). |
+| `-DASTRACARE_BUILD_TESTS=ON/OFF` | `ON` | Fetches Catch2 and compiles the unit test suite (`astracare_tests`). |
+| `-DCMAKE_PREFIX_PATH=<path>` | Auto | Path to Qt 6 CMake directory if not detected automatically. |
+
+*Example (Headless core & storage build without Qt UI):*
+```bash
+cmake -S . -B build -DASTRACARE_BUILD_UI=OFF
+```
+
+*Example (Specifying Qt prefix path on Windows):*
+```powershell
+cmake -S . -B build -DCMAKE_PREFIX_PATH="C:/Qt/6.6.3/msvc2019_64"
+```
+
+#### 3. Compile the Application
+Compile all enabled targets in parallel:
+
+```bash
+cmake --build build --config Release --parallel
+```
+
+---
+
+### Running the Application
+
+Launch the compiled Astracare executable:
+
+- **Windows (Visual Studio / MSVC)**:
+  ```powershell
+  .\build\ui\Release\astracare.exe
+  ```
+- **Windows (Ninja / MinGW)**:
+  ```powershell
+  .\build\ui\astracare.exe
+  ```
+- **Linux / macOS**:
+  ```bash
+  ./build/ui/astracare
+  ```
+
+> [!TIP]
+> **Windows DLL Troubleshooting**: If running `astracare.exe` outside an IDE reports missing Qt DLLs (`Qt6Widgets.dll`, `Qt6Core.dll`, `Qt6Charts.dll`), run `windeployqt` to bundle the required libraries into the output folder:
+> ```powershell
+> windeployqt .\build\ui\Release\astracare.exe
+> ```
+> Or launch the application from within your IDE or an environment where Qt's `bin/` directory is present in your `PATH`.
+
+#### IDE Support
+- **Qt Creator**: Open `astracare/CMakeLists.txt` directly (`File > Open File or Project...`). Select your configured Qt 6 kit and click **Build & Run** (or press `Ctrl+R` / `Cmd+R`).
+- **Visual Studio 2022**: Use `File > Open > Folder...` and select the `astracare` directory. CMake integration will configure and build targets natively.
+- **VS Code**: Install the **C/C++** and **CMake Tools** extensions. Set your kit to MSVC/GCC/Clang, select the `Release` variant, and press `F7` to build or `F5` / `Shift+F5` to debug/run.
+
+---
+
+### Running Tests
+
+Unit tests are written using **Catch2** (v3.5.2) and cover the standalone `core` and `storage` modules independently of Qt. Catch2 is automatically downloaded by CMake via `FetchContent` during the initial configuration.
+
+To execute the test suite:
+
+```bash
+# Run tests through CTest
+ctest --test-dir build --output-on-failure -C Release
+
+# Or execute the test binary directly:
+# Linux / macOS:
+./build/tests/astracare_tests
+
+# Windows:
+.\build\tests\Release\astracare_tests.exe
+```
+
+---
+
+### Offline Verification (Mission Readiness Check)
+
+Astracare is engineered to operate in deep space with zero internet connectivity. To verify offline compliance:
+
+1. **Disconnect from the network** (disable Wi-Fi / disconnect Ethernet cable).
+2. **Launch Astracare** and perform the core health workflows:
+   - **Track Page**: Record a new vital reading (heart rate, blood pressure, sleep, mood). Ensure data saves to local SQLite without errors.
+   - **Alert Page**: Verify that alerts trigger according to standard astronaut reference ranges.
+   - **Guide & Emergency Pages**: Ensure bundled medical procedures and emergency protocols load instantly from offline resources.
+   - **Reports Page**: Validate that historical readings and summaries can be queried and generated offline.
+
+---
+
+### Troubleshooting & Common Issues
+
+- **`Could not find a package configuration file provided by "Qt6"`**:
+  Ensure Qt 6 is installed and tell CMake where to find it by specifying:
+  `-DCMAKE_PREFIX_PATH="<path-to-Qt>/6.x.x/<compiler>"`
+- **`Could NOT find Qt6Charts` / Missing Charts module**:
+  Ensure the Qt Charts component is installed. On Linux, run `sudo apt install libqt6charts6-dev qt6-charts-dev`. On Windows, open the Qt Maintenance Tool and add **Qt Charts**.
+- **Catch2 Download Fails during CMake Configure**:
+  Catch2 requires network access once during the initial CMake configuration. Once downloaded to the `build/` directory, all subsequent builds and test runs work 100% offline.
 
 ---
 
