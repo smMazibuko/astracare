@@ -16,6 +16,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle("Astracare • Autonomous Crew Health");
     resize(1240, 750);
 
+    database_.open("astracare.db");
+
     auto* central = new QWidget;
     central->setObjectName("CentralContainer");
     auto* rootLayout = new QVBoxLayout(central);
