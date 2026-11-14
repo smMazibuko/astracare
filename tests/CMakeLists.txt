@@ -16,6 +16,11 @@ target_link_libraries(astracare_tests PRIVATE
     astracare::storage
 )
 
+# Lets tests find resources/ranges.json
+target_compile_definitions(astracare_tests PRIVATE
+    ASTRACARE_RESOURCE_DIR="${CMAKE_SOURCE_DIR}/resources"
+)
+
 list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
 include(Catch)
 catch_discover_tests(astracare_tests)
