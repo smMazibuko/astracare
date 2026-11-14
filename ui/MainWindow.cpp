@@ -16,6 +16,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle("Astracare • Autonomous Crew Health");
     resize(1240, 750);
 
+    database_.open("astracare.db");
+
     auto* central = new QWidget;
     central->setObjectName("CentralContainer");
     auto* rootLayout = new QVBoxLayout(central);
@@ -60,22 +62,30 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
         pages_->addWidget(page);
     };
 
-    auto* dashboardPage = new DashboardPage;
-    addPage("Dashboard", dashboardPage);
-    addPage("Track", new TrackPage);
+    dashboardPage_ = new DashboardPage;
+    trackPage_ = new TrackPage;
+    alertsPage_ = new AlertsPage;
+    addPage("Dashboard", dashboardPage_);
+    addPage("Track", trackPage_);
     addPage("Guide", new GuidePage);
-    addPage("Alerts", new AlertsPage);
+    addPage("Alerts", alertsPage_);
     addPage("Reports", new ReportsPage);
     addPage("Emergency", new EmergencyPage);
 
     connect(nav_, &QListWidget::currentRowChanged, pages_, &QStackedWidget::setCurrentIndex);
     connect(quickSosBtn, &QPushButton::clicked, this, [this]() { nav_->setCurrentRow(5); });
-    connect(dashboardPage, &DashboardPage::navigateToPage, this, [this](int index) {
+    connect(dashboardPage_, &DashboardPage::navigateToPage, this, [this](int index) {
         nav_->setCurrentRow(index);
     });
-    connect(dashboardPage, &DashboardPage::openGuidanceById, this, [this](const QString&) {
+    connect(dashboardPage_, &DashboardPage::openGuidanceById, this, [this](const QString&) {
         nav_->setCurrentRow(2); // Jumps directly to Guide page
     });
+
+    connect(trackPage_, &TrackPage::readingLogged, this,
+            [this](const astracare::VitalReading& reading) {
+                database_.insertReading(reading);
+                refreshFromCore();
+            });
 
     nav_->setCurrentRow(0);
 
@@ -98,4 +108,23 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     rootLayout->addWidget(footer);
 
     setCentralWidget(central);
+    refreshFromCore();
+}
+
+void MainWindow::refreshFromCore() {
+    const auto readings = database_.allReadings();
+    trackPage_->setReadings(readings);
+    dashboardPage_->setReadings(readings);
+
+    std::vector<astracare::Alert> alerts;
+    if (!readings.empty()) {
+        alerts = alertEngine_.evaluate(readings.back());
+        const auto trends = alertEngine_.evaluateTrend(readings);
+        alerts.insert(alerts.end(), trends.begin(), trends.end());
+    }
+    alertsPage_->setAlerts(alerts);
+    if (!alerts.empty())
+        dashboardPage_->setActiveAlert(alerts.front());
+    else
+        dashboardPage_->setActiveAlert({});
 }
