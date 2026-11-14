@@ -1,118 +1,180 @@
-#include "TrackPage.h"
+#include "pages/TrackPage.h"
+
+#include <QCheckBox>
+#include <QDateTime>
 #include <QDoubleSpinBox>
 #include <QFormLayout>
+#include <QFrame>
+#include <QGridLayout>
 #include <QHBoxLayout>
+#include <QHeaderView>
 #include <QLabel>
-#include <QLineEdit>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QSpinBox>
-#include <QTextEdit>
+#include <QTableWidget>
 #include <QVBoxLayout>
-#include "astracare/models.h" 
+
+#include "astracare/models.h"
 
 TrackPage::TrackPage(QWidget* parent) : QWidget(parent) {
-    QVBoxLayout* mainLayout = new QVBoxLayout(this);
+    auto* root = new QVBoxLayout(this);
+    root->setContentsMargins(16, 16, 16, 16);
+    root->setSpacing(14);
 
-    QLabel* title = new QLabel("Astronaut Vitals Tracking");
-    title->setStyleSheet("font-size: 24px; font-weight: bold; margin-bottom: 20px; color: white;");
-    mainLayout->addWidget(title);
+    // LEFT: Input Form Card
+    auto* formCard = new QFrame;
+    formCard->setObjectName("SpaceCard");
+    formCard->setFixedWidth(360);
+    auto* formLayout = new QVBoxLayout(formCard);
+    formLayout->setContentsMargins(18, 16, 18, 16);
+    formLayout->setSpacing(12);
 
-    QFormLayout* formLayout = new QFormLayout();
+    auto* title = new QLabel("LOG BIOMETRIC READING");
+    title->setStyleSheet("color: #ffffff; font-size: 14px; font-weight: 700;");
 
-    // 1. Heart Rate
-    QSpinBox* hrInput = new QSpinBox();
-    hrInput->setRange(0, 300);
-    hrInput->setSuffix(" bpm");
-    formLayout->addRow("Heart Rate:", hrInput);
+    auto* subtitle = new QLabel("Measurements are saved offline and evaluated immediately against NASA-STD-3001 thresholds.");
+    subtitle->setWordWrap(true);
+    subtitle->setStyleSheet("color: #9ca3af; font-size: 11px;");
 
-    // 2. Blood Pressure
-    QWidget* bpWidget = new QWidget();
-    QHBoxLayout* bpLayout = new QHBoxLayout(bpWidget);
-    bpLayout->setContentsMargins(0, 0, 0, 0);
+    auto* fields = new QFormLayout;
+    fields->setSpacing(10);
 
-    QSpinBox* sysInput = new QSpinBox();
-    sysInput->setRange(0, 300);
-    sysInput->setPrefix("Sys: ");
+    auto styleSpin = [](QWidget* w) {
+        w->setStyleSheet("background-color: #070a13; color: #ffffff; border: 1px solid #1b2438; border-radius: 6px; padding: 6px;");
+    };
 
-    QSpinBox* diaInput = new QSpinBox();
-    diaInput->setRange(0, 200);
-    diaInput->setPrefix("Dia: ");
+    hrInput_ = new QSpinBox;
+    hrInput_->setRange(30, 220);
+    hrInput_->setValue(72);
+    hrInput_->setSuffix(" BPM");
+    styleSpin(hrInput_);
 
-    bpLayout->addWidget(sysInput);
-    bpLayout->addWidget(diaInput);
-    formLayout->addRow("Blood Pressure:", bpWidget);
+    sysInput_ = new QSpinBox;
+    sysInput_->setRange(60, 240);
+    sysInput_->setValue(120);
+    sysInput_->setSuffix(" mmHg");
+    styleSpin(sysInput_);
 
-    // 3. Sleep
-    QDoubleSpinBox* sleepInput = new QDoubleSpinBox();
-    sleepInput->setRange(0.0, 24.0);
-    sleepInput->setSingleStep(0.5);
-    sleepInput->setSuffix(" hours");
-    formLayout->addRow("Sleep:", sleepInput);
+    diaInput_ = new QSpinBox;
+    diaInput_->setRange(40, 150);
+    diaInput_->setValue(80);
+    diaInput_->setSuffix(" mmHg");
+    styleSpin(diaInput_);
 
-    // 4. Mood (1 to 5)
-    QSpinBox* moodInput = new QSpinBox();
-    moodInput->setRange(1, 5);
-    moodInput->setPrefix("Level 1-5: ");
-    formLayout->addRow("Mood:", moodInput);
+    sleepInput_ = new QDoubleSpinBox;
+    sleepInput_->setRange(0.0, 24.0);
+    sleepInput_->setSingleStep(0.5);
+    sleepInput_->setValue(7.5);
+    sleepInput_->setSuffix(" hrs");
+    styleSpin(sleepInput_);
 
-    // 5. Symptoms
-    QTextEdit* symptomsInput = new QTextEdit();
-    symptomsInput->setPlaceholderText("Enter any symptoms...");
-    symptomsInput->setMaximumHeight(80);
-    formLayout->addRow("Symptoms:", symptomsInput);
+    moodInput_ = new QSpinBox;
+    moodInput_->setRange(1, 5);
+    moodInput_->setValue(4);
+    moodInput_->setSuffix(" / 5");
+    styleSpin(moodInput_);
 
-    mainLayout->addLayout(formLayout);
+    fields->addRow("Heart Rate:", hrInput_);
+    fields->addRow("Systolic BP:", sysInput_);
+    fields->addRow("Diastolic BP:", diaInput_);
+    fields->addRow("Sleep Duration:", sleepInput_);
+    fields->addRow("Mood Score:", moodInput_);
 
-    // Save Button
-    QPushButton* saveBtn = new QPushButton("Save Reading");
-    saveBtn->setStyleSheet(
-        "background-color: #2b579a; color: white; padding: 10px; font-weight: bold;");
-    mainLayout->addWidget(saveBtn);
+    auto* symLabel = new QLabel("REPORTED SYMPTOMS:");
+    symLabel->setStyleSheet("color: #00d2ff; font-size: 11px; font-weight: 700; margin-top: 6px;");
 
-    mainLayout->addStretch();
+    auto* symGrid = new QGridLayout;
+    QStringList symptoms = {"Dizziness", "Headache", "Chest Pain", "Fatigue", "Vision Blur", "Nausea"};
+    for (int i = 0; i < symptoms.size(); ++i) {
+        auto* cb = new QCheckBox(symptoms[i]);
+        cb->setStyleSheet("color: #d1d5db; font-size: 12px;");
+        symptomChecks_.append(cb);
+        symGrid->addWidget(cb, i / 2, i % 2);
+    }
 
-        // Button Click Action - BACKEND LOGIC
-    connect(saveBtn, &QPushButton::clicked, this, [=]() {
-        // 1. Validation: Check for impossible medical data
-        if (sysInput->value() <= diaInput->value()) {
-            QMessageBox::warning(this, "Invalid Data",
-                                 "Systolic BP must be higher than Diastolic BP.");
-            return; // Stop the save
+    auto* saveBtn = new QPushButton("Save Reading & Evaluate");
+    saveBtn->setObjectName("PrimaryBtn");
+
+    formLayout->addWidget(title);
+    formLayout->addWidget(subtitle);
+    formLayout->addLayout(fields);
+    formLayout->addWidget(symLabel);
+    formLayout->addLayout(symGrid);
+    formLayout->addStretch();
+    formLayout->addWidget(saveBtn);
+
+    // RIGHT: History Table Card
+    auto* tableCard = new QFrame;
+    tableCard->setObjectName("SpaceCard");
+    auto* tableLayout = new QVBoxLayout(tableCard);
+    tableLayout->setContentsMargins(18, 16, 18, 16);
+
+    auto* tableTitle = new QLabel("MISSION VITALS HISTORY LOG");
+    tableTitle->setStyleSheet("color: #ffffff; font-size: 14px; font-weight: 700; margin-bottom: 8px;");
+
+    historyTable_ = new QTableWidget(0, 6);
+    historyTable_->setHorizontalHeaderLabels({"Timestamp (UTC)", "HR", "BP", "Sleep", "Mood", "Symptoms"});
+    historyTable_->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    historyTable_->verticalHeader()->setVisible(false);
+    historyTable_->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    historyTable_->setStyleSheet(
+        "QTableWidget { background-color: #070a13; border: 1px solid #1b2438; border-radius: 8px; gridline-color: #1b2438; color: #e5e7eb; }"
+        "QHeaderView::section { background-color: #0d1322; color: #9ca3af; border: none; padding: 8px; font-weight: 700; font-size: 11px; }"
+    );
+
+    tableLayout->addWidget(tableTitle);
+    tableLayout->addWidget(historyTable_, 1);
+
+    root->addWidget(formCard);
+    root->addWidget(tableCard, 1);
+   
+    connect(saveBtn, &QPushButton::clicked, this, &TrackPage::onSaveClicked);
+}
+
+void TrackPage::onSaveClicked() {
+    // 1. Validation Logic
+    if (sysInput_->value() <= diaInput_->value()) {
+        QMessageBox::warning(this, "Invalid Data", "Systolic BP must be higher than Diastolic BP.");
+        return;
+    }
+
+    // 2. Create the struct
+    astracare::VitalReading r;
+    r.timestamp = QDateTime::currentDateTimeUtc().toString(Qt::ISODate).toStdString();
+    r.heartRate = hrInput_->value();
+    r.systolic = sysInput_->value();
+    r.diastolic = diaInput_->value();
+    r.sleepHours = sleepInput_->value();
+    r.mood = moodInput_->value();
+
+    QStringList selected;
+    for (auto* cb : symptomChecks_) {
+        if (cb->isChecked()) {
+            selected << cb->text();
+            cb->setChecked(false);
         }
-        if (hrInput->value() < 30 || hrInput->value() > 220) {
-            QMessageBox::warning(this, "Invalid Data",
-                                 "Heart rate is outside of human survival limits.");
-            return;
-        }
+    }
+    r.symptoms = selected.join(", ").toStdString();
 
-        // 2. Create the backend data struct
-        VitalReading reading;
-        reading.id = 0; // Will be assigned by the database
-        // In a real app, use a proper date library for ISO 8601. For now, a placeholder:
-        reading.timestamp = "2026-11-14T12:00:00";
-        reading.heartRate = hrInput->value();
-        reading.systolic = sysInput->value();
-        reading.diastolic = diaInput->value();
-        reading.sleepHours = sleepInput->value();
-        reading.mood = moodInput->value();
-        reading.symptoms = symptomsInput->toPlainText().toStdString();
+    // 3. Update UI and send signal
+    appendRowToTable(r);
+    emit readingLogged(r);
+}
 
-        // 3. TODO: Pass to Database (@Madiki)
-        // Database::getInstance().saveVitalReading(reading);
+void TrackPage::appendRowToTable(const astracare::VitalReading& r) {
+    historyTable_->insertRow(0);
+    historyTable_->setItem(0, 0, new QTableWidgetItem(QString::fromStdString(r.timestamp)));
+    historyTable_->setItem(0, 1, new QTableWidgetItem(QString("%1 bpm").arg(r.heartRate)));
+    historyTable_->setItem(0, 2, new QTableWidgetItem(QString("%1/%2").arg(r.systolic).arg(r.diastolic)));
+    historyTable_->setItem(0, 3, new QTableWidgetItem(QString("%1 h").arg(r.sleepHours, 0, 'f', 1)));
+    historyTable_->setItem(0, 4, new QTableWidgetItem(QString("%1 / 5").arg(r.mood)));
+    historyTable_->setItem(0, 5, new QTableWidgetItem(r.symptoms.empty() ? "None" : QString::fromStdString(r.symptoms)));
+}
 
-        // 4. TODO: Pass to Alert Engine (@Sunday)
-        // std::vector<Alert> alerts = AlertEngine::analyze(reading);
-        // if (!alerts.empty()) { show alerts on dashboard }
-
-        // Temporary confirmation so you know the backend worked
-        QString msg = QString("Backend Success!\nHR: %1\nBP: %2/%3\nSleep: %4\nMood: %5")
-                          .arg(reading.heartRate)
-                          .arg(reading.systolic)
-                          .arg(reading.diastolic)
-                          .arg(reading.sleepHours)
-                          .arg(reading.mood);
-
-        QMessageBox::information(this, "Reading Processed", msg);
-    });
+void TrackPage::setReadings(const std::vector<astracare::VitalReading>& readings) {
+    historyTable_->setRowCount(0);
+    for (const auto& r : readings) {
+        appendRowToTable(r);
+    }
 }

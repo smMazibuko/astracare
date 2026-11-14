@@ -12,6 +12,6 @@ public:
     explicit MainWindow(QWidget* parent = nullptr);
 
 private:
-    QListWidget* nav_ = nullptr;
-    QStackedWidget* pages_ = nullptr;
+    QListWidget* nav_;
+    QStackedWidget* pages_;
 };
