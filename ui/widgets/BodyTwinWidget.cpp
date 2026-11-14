@@ -41,7 +41,7 @@ void BodyTwinWidget::paintEvent(QPaintEvent*) {
         QColor fill = base;
         fill.setAlpha(selectedZone_ == id ? 115 : 48);
 
-        QPen pen(selectedZone_ == id ? QColor("#00d2ff") : base, selectedZone_ == id ? 3 : 2);
+        QPen pen(selectedZone_ == id ? QColor("#2f8f5b") : base, selectedZone_ == id ? 3 : 2);
         p.setPen(pen);
         p.setBrush(fill);
 
@@ -51,17 +51,41 @@ void BodyTwinWidget::paintEvent(QPaintEvent*) {
             p.drawRoundedRect(rect, 12, 12);
         }
 
+        // Draw each line independently so the label remains optically centered
+        // instead of relying on the default multi-line text leading.
         p.setPen(Qt::white);
         QFont f = p.font();
-        f.setPointSize(8);
+        f.setPointSizeF(isCircle ? 7.5 : 8.0);
         f.setBold(true);
+
+        const QStringList lines = label.split('\n');
+        const qreal horizontalPadding = isCircle ? 8.0 : 10.0;
+        const qreal availableWidth = rect.width() - horizontalPadding;
+        QFontMetricsF metrics(f);
+        while (metrics.horizontalAdvance(lines.value(0)) > availableWidth ||
+               (lines.size() > 1 && metrics.horizontalAdvance(lines.at(1)) > availableWidth)) {
+            f.setPointSizeF(f.pointSizeF() - 0.5);
+            metrics = QFontMetricsF(f);
+            if (f.pointSizeF() <= 6.0) break;
+        }
+
         p.setFont(f);
-        p.drawText(rect, Qt::AlignCenter, label);
+        const qreal lineHeight = metrics.lineSpacing();
+        const qreal totalHeight = lineHeight * lines.size();
+        qreal baseline = rect.center().y() - (totalHeight / 2.0) + metrics.ascent();
+        for (const QString& line : lines) {
+            const QRectF lineRect(rect.left() + horizontalPadding / 2.0,
+                                  baseline - metrics.ascent(),
+                                  availableWidth,
+                                  lineHeight);
+            p.drawText(lineRect, Qt::AlignHCenter | Qt::AlignVCenter, line);
+            baseline += lineHeight;
+        }
     };
 
     // Arms (decorative silhouette)
     p.setPen(QPen(QColor("#334155"), 1.5));
-    p.setBrush(QColor("#1b2438"));
+    p.setBrush(QColor("#273029"));
     p.drawRoundedRect(cx - 68, 86, 20, 82, 9, 9);
     p.drawRoundedRect(cx + 48, 86, 20, 82, 9, 9);
 

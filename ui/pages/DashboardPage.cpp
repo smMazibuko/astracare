@@ -83,12 +83,12 @@ DashboardPage::DashboardPage(QWidget* parent) : QWidget(parent) {
 
     sysSeries_ = new QLineSeries;
     sysSeries_->setName("Systolic BP");
-    sysSeries_->setColor(QColor("#00d2ff"));
+    sysSeries_->setColor(QColor("#2f8f5b"));
 
     auto* chart = new QChart;
     chart->addSeries(hrSeries_);
     chart->addSeries(sysSeries_);
-    chart->setBackgroundBrush(QBrush(QColor("#070a13")));
+    chart->setBackgroundBrush(QBrush(QColor("#090b0a")));
     chart->setTitle("Biometric Trend History");
     chart->setTitleBrush(QBrush(QColor("#9ca3af")));
     chart->legend()->setLabelColor(QColor("#d1d5db"));
@@ -100,12 +100,12 @@ DashboardPage::DashboardPage(QWidget* parent) : QWidget(parent) {
     axisX_->setTickInterval(1.0);
     axisX_->setLabelFormat("%d");
     axisX_->setLabelsColor(QColor("#6b7280"));
-    axisX_->setGridLineColor(QColor("#1b2438"));
+    axisX_->setGridLineColor(QColor("#273029"));
 
     auto* axisY = new QValueAxis;
     axisY->setRange(40, 180);
     axisY->setLabelsColor(QColor("#6b7280"));
-    axisY->setGridLineColor(QColor("#1b2438"));
+    axisY->setGridLineColor(QColor("#273029"));
 
     chart->addAxis(axisX_, Qt::AlignBottom);
     chart->addAxis(axisY, Qt::AlignLeft);
@@ -137,6 +137,9 @@ DashboardPage::DashboardPage(QWidget* parent) : QWidget(parent) {
     pvtTextCol->addWidget(pvtStatusLabel_);
 
     pvtBtn_ = new QPushButton("Start Reaction Check");
+    // Keep the click target fixed while the label changes between waiting and
+    // reaction states, so the button never shifts under the user's pointer.
+    pvtBtn_->setFixedWidth(174);
     pvtLayout->addLayout(pvtTextCol, 1);
     pvtLayout->addWidget(pvtBtn_);
 
@@ -151,7 +154,7 @@ DashboardPage::DashboardPage(QWidget* parent) : QWidget(parent) {
     diagLayout->setSpacing(10);
 
     auto* diagTag = new QLabel("ZONE DIAGNOSTIC");
-    diagTag->setStyleSheet("color: #00d2ff; font-family: 'Consolas', monospace; font-size: 11px; font-weight: 700;");
+    diagTag->setStyleSheet("color: #2f8f5b; font-family: 'Consolas', monospace; font-size: 11px; font-weight: 700;");
 
     zoneTitleLabel_ = new QLabel("Cardiopulmonary & Hemodynamics");
     zoneTitleLabel_->setWordWrap(true);
@@ -159,13 +162,13 @@ DashboardPage::DashboardPage(QWidget* parent) : QWidget(parent) {
 
     zoneSummaryLabel_ = new QLabel("Awaiting telemetry readings from Track or storage.");
     zoneSummaryLabel_->setWordWrap(true);
-    zoneSummaryLabel_->setStyleSheet("background-color: #070a13; border: 1px solid #1b2438; border-radius: 8px; padding: 12px; color: #d1d5db; font-size: 12px;");
+    zoneSummaryLabel_->setStyleSheet("background-color: rgba(0, 0, 0, 45); border: 1px solid rgba(255, 255, 255, 26); border-radius: 8px; padding: 12px; color: #d1d5db; font-size: 12px;");
 
     zoneMetric1Label_ = new QLabel("Metric 1: --");
-    zoneMetric1Label_->setStyleSheet("background-color: #070a13; border: 1px solid #1b2438; border-radius: 8px; padding: 10px; color: #f3f4f6; font-family: 'Consolas', monospace; font-size: 12px;");
+    zoneMetric1Label_->setStyleSheet("background-color: rgba(0, 0, 0, 45); border: 1px solid rgba(255, 255, 255, 26); border-radius: 8px; padding: 10px; color: #f3f4f6; font-family: 'Consolas', monospace; font-size: 12px;");
 
     zoneMetric2Label_ = new QLabel("Metric 2: --");
-    zoneMetric2Label_->setStyleSheet("background-color: #070a13; border: 1px solid #1b2438; border-radius: 8px; padding: 10px; color: #f3f4f6; font-family: 'Consolas', monospace; font-size: 12px;");
+    zoneMetric2Label_->setStyleSheet("background-color: rgba(0, 0, 0, 45); border: 1px solid rgba(255, 255, 255, 26); border-radius: 8px; padding: 10px; color: #f3f4f6; font-family: 'Consolas', monospace; font-size: 12px;");
 
     auto* guideBtn = new QPushButton("Open Offline Medical Guide");
     guideBtn->setObjectName("PrimaryBtn");
@@ -208,7 +211,7 @@ DashboardPage::DashboardPage(QWidget* parent) : QWidget(parent) {
     connect(pvtWaitTimer_, &QTimer::timeout, this, [this]() {
         pvtPhase_ = 2;
         pvtBtn_->setText("TAP NOW!");
-        pvtBtn_->setStyleSheet("background-color: #10b981; color: #070a13; font-weight: 800;");
+        pvtBtn_->setStyleSheet("background-color: #2f8f5b; color: #071006; font-weight: 800;");
         pvtStopwatch_.start();
     });
 
@@ -251,7 +254,7 @@ void DashboardPage::setReadings(const std::vector<astracare::VitalReading>& read
     hrCard_->setReading(QString::number(latestReading_.heartRate), highHr ? "#ef4444" : "#10b981", highHr ? "Out of Range" : "Recorded");
 
     bool highBp = latestReading_.systolic >= 135 || latestReading_.diastolic >= 85;
-    bpCard_->setReading(QString("%1/%2").arg(latestReading_.systolic).arg(latestReading_.diastolic), highBp ? "#f59e0b" : "#00d2ff", highBp ? "Elevated" : "Recorded");
+    bpCard_->setReading(QString("%1/%2").arg(latestReading_.systolic).arg(latestReading_.diastolic), highBp ? "#f59e0b" : "#2f8f5b", highBp ? "Elevated" : "Recorded");
 
     bool lowSleep = latestReading_.sleepHours < 6.0;
     sleepCard_->setReading(QString::number(latestReading_.sleepHours, 'f', 1), lowSleep ? "#f59e0b" : "#f3f4f6", lowSleep ? "Low Sleep" : "Recorded");
@@ -304,7 +307,9 @@ void DashboardPage::onZoneSelected(const QString& zone) {
 void DashboardPage::startPvtTest() {
     pvtPhase_ = 1;
     pvtBtn_->setText("WAIT FOR GREEN...");
-    pvtBtn_->setStyleSheet("background-color: #f59e0b; color: #070a13; font-weight: 700;");
+    // Waiting is intentionally neutral so the green state remains a clear
+    // signal that the user should tap immediately.
+    pvtBtn_->setStyleSheet("background-color: #4b5563; color: #f3f4f6; font-weight: 700;");
     int delayMs = QRandomGenerator::global()->bounded(1200, 2800);
     pvtWaitTimer_->start(delayMs);
 }
