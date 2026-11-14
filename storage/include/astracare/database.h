@@ -6,10 +6,18 @@
 
 #include "astracare/models.h"
 
+struct sqlite3;
+
 namespace astracare {
 
 class Database {
 public:
+    Database() = default;
+    ~Database();
+
+    Database(const Database&) = delete;
+    Database& operator=(const Database&) = delete;
+
     // Open (or create) the database file. Use ":memory:" for tests.
     bool open(const std::string& path);
     void close();
@@ -19,11 +27,7 @@ public:
     std::vector<VitalReading> allReadings() const;
 
 private:
-    // TODO(Role 6): replace with a real SQLite handle and schema.
-    // This in-memory stub lets everyone code against the API from day one.
-    std::vector<VitalReading> stub_;
-    int nextId_ = 1;
-    bool open_ = false;
+    ::sqlite3* handle_ = nullptr;
 };
 
 } // namespace astracare

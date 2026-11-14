@@ -5,6 +5,7 @@
 #include <QScrollArea>
 #include <QStackedWidget>
 #include <QWidget>
+#include <QDateTime>
 
 #include "pages/AlertsPage.h"
 #include "pages/DashboardPage.h"
@@ -12,6 +13,7 @@
 #include "pages/GuidePage.h"
 #include "pages/ReportsPage.h"
 #include "pages/TrackPage.h"
+#include "astracare/report.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle("Astracare • Autonomous Crew Health");
@@ -71,7 +73,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     addPage("Track", trackPage_);
     addPage("Guide", new GuidePage);
     addPage("Alerts", alertsPage_);
-    addPage("Reports", new ReportsPage);
+    reportsPage_ = new ReportsPage;
+    addPage("Reports", reportsPage_);
     addPage("Emergency", new EmergencyPage);
 
     connect(nav_, &QListWidget::currentRowChanged, pages_, &QStackedWidget::setCurrentIndex);
@@ -88,6 +91,24 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
                 database_.insertReading(reading);
                 refreshFromCore();
             });
+
+    connect(reportsPage_, &ReportsPage::generateReportRequested, this, [this]() {
+        const auto readings = database_.allReadings();
+        astracare::MedicalReport report;
+        report.generatedAt = QDateTime::currentDateTimeUtc().toString(Qt::ISODate).toStdString();
+        report.readings = readings;
+        if (!readings.empty()) {
+            report.alerts = alertEngine_.evaluate(readings.back());
+            const auto trends = alertEngine_.evaluateTrend(readings);
+            report.alerts.insert(report.alerts.end(), trends.begin(), trends.end());
+            for (const auto& alert : report.alerts) {
+                if (!alert.guidanceId.empty()) report.guidanceIds.push_back(alert.guidanceId);
+            }
+        }
+        report.notes = "Generated offline from the local SQLite health history.";
+        reportsPage_->setReportData(QString::fromStdString(astracare::ReportBuilder::toJson(report)),
+                                     QString::fromStdString(astracare::ReportBuilder::toCsv(report)));
+    });
 
     nav_->setCurrentRow(0);
 

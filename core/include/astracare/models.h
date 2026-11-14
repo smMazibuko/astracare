@@ -6,13 +6,13 @@
 namespace astracare {
 
 struct VitalReading {
-    int id;
+    int id = 0;
     std::string timestamp; // ISO 8601
-    int heartRate;         // bpm
-    int systolic;          // mmHg
-    int diastolic;         // mmHg
-    double sleepHours;
-    int mood;             // 1 to 5
+    int heartRate = 0;     // bpm
+    int systolic = 0;      // mmHg
+    int diastolic = 0;     // mmHg
+    double sleepHours = 0;
+    int mood = 0;          // 1 to 5
     std::string symptoms; // free text
 };
 
