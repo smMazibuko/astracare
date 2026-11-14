@@ -6,7 +6,7 @@
 #include "widgets/AlertBanner.h"
 
 AlertsPage::AlertsPage(QWidget* parent) : QWidget(parent) {
-    auto* layout = new QVBoxLayout(this);
+    auto* root = new QVBoxLayout(this);
     root->setContentsMargins(16, 16, 16, 16);
     root->setSpacing(14);
 

@@ -70,7 +70,9 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 
     connect(nav_, &QListWidget::currentRowChanged, pages_, &QStackedWidget::setCurrentIndex);
     connect(quickSosBtn, &QPushButton::clicked, this, [this]() { nav_->setCurrentRow(5); });
-    connect(dashboardPage, &DashboardPage::navigateToPage, nav_, &QListWidget::setCurrentRow);
+    connect(dashboardPage, &DashboardPage::navigateToPage, this, [this](int index) {
+        nav_->setCurrentRow(index);
+    });
     connect(dashboardPage, &DashboardPage::openGuidanceById, this, [this](const QString&) {
         nav_->setCurrentRow(2); // Jumps directly to Guide page
     });

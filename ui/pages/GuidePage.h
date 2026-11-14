@@ -14,12 +14,10 @@ class GuidePage : public QWidget {
 public:
     explicit GuidePage(QWidget* parent = nullptr);
 
-    void selectGuidanceById(const QString& guidanceId);
-
 public slots:
     void setGuidanceEntries(const std::vector<astracare::GuidanceEntry>& entries);
     void selectGuidanceById(const QString& guidanceId);
-    
+
 private slots:
     void filterGuides(const QString& query);
     void onGuideSelected(int row);

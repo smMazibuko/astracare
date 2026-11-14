@@ -1,11 +1,12 @@
 #pragma once
 // Owner: Role 5 (Medical Content)
 
-#include <QCheckBox>
+#include <QHBoxLayout>
 #include <QLabel>
-#include <QList>
 #include <QVBoxLayout>
 #include <QWidget>
+#include <vector>
+#include "astracare/models.h"
 
 class EmergencyPage : public QWidget {
     Q_OBJECT
