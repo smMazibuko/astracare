@@ -1,5 +1,8 @@
 #include "MainWindow.h"
 
+#include <QCoreApplication>
+#include <QDir>
+#include <QFile>
 #include <QHBoxLayout>
 #include <QListWidget>
 #include <QScrollArea>
@@ -69,21 +72,44 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     dashboardPage_ = new DashboardPage;
     trackPage_ = new TrackPage;
     alertsPage_ = new AlertsPage;
+    guidePage_ = new GuidePage;
+    emergencyPage_ = new EmergencyPage;
     addPage("Dashboard", dashboardPage_);
     addPage("Track", trackPage_);
-    addPage("Guide", new GuidePage);
+    addPage("Guide", guidePage_);
     addPage("Alerts", alertsPage_);
     reportsPage_ = new ReportsPage;
     addPage("Reports", reportsPage_);
-    addPage("Emergency", new EmergencyPage);
+    addPage("Emergency", emergencyPage_);
+
+    QString guidancePath = QDir::cleanPath(
+        QDir(QCoreApplication::applicationDirPath()).filePath(
+            "../../../resources/guidance/guidance.json"));
+    if (!QFile::exists(guidancePath))
+        guidancePath = QDir::current().filePath("resources/guidance/guidance.json");
+
+    if (guidanceLibrary_.loadFromFile(guidancePath.toStdString())) {
+        guidePage_->setGuidanceEntries(guidanceLibrary_.all());
+
+        std::vector<astracare::GuidanceEntry> emergencyProtocols;
+        for (const auto& entry : guidanceLibrary_.all()) {
+            if (entry.category == "emergency")
+                emergencyProtocols.push_back(entry);
+        }
+        emergencyPage_->setEmergencyProtocols(emergencyProtocols);
+    }
 
     connect(nav_, &QListWidget::currentRowChanged, pages_, &QStackedWidget::setCurrentIndex);
     connect(quickSosBtn, &QPushButton::clicked, this, [this]() { nav_->setCurrentRow(5); });
     connect(dashboardPage_, &DashboardPage::navigateToPage, this, [this](int index) {
         nav_->setCurrentRow(index);
     });
-    connect(dashboardPage_, &DashboardPage::openGuidanceById, this, [this](const QString&) {
-        nav_->setCurrentRow(2); // Jumps directly to Guide page
+    connect(dashboardPage_, &DashboardPage::openGuidanceById, this,
+            [this](const QString& guidanceId) { openGuidance(guidanceId); });
+    connect(alertsPage_, &AlertsPage::openGuidanceRequested, this,
+            [this](const QString& guidanceId) { openGuidance(guidanceId); });
+    connect(alertsPage_, &AlertsPage::emergencyRequested, this, [this]() {
+        nav_->setCurrentRow(5);
     });
 
     connect(trackPage_, &TrackPage::readingLogged, this,
@@ -132,6 +158,30 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 
     setCentralWidget(central);
     refreshFromCore();
+}
+
+void MainWindow::openGuidance(const QString& guidanceId) {
+    QString resolvedId = guidanceId;
+    if (!guidanceLibrary_.findById(guidanceId.toStdString())) {
+        QString category;
+        if (guidanceId.startsWith("cardiac"))
+            category = "cardiac";
+        else if (guidanceId.startsWith("sleep"))
+            category = "sleep";
+        else if (guidanceId.startsWith("vision"))
+            category = "vision";
+        else if (guidanceId.startsWith("neuro"))
+            category = "sensorimotor";
+
+        for (const auto& entry : guidanceLibrary_.all()) {
+            if (QString::fromStdString(entry.category) == category) {
+                resolvedId = QString::fromStdString(entry.id);
+                break;
+            }
+        }
+    }
+    guidePage_->selectGuidanceById(resolvedId);
+    nav_->setCurrentRow(2);
 }
 
 void MainWindow::refreshFromCore() {
