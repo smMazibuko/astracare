@@ -10,6 +10,7 @@ add_executable(astracare_tests
     test_alert_engine.cpp
     test_database.cpp
     test_report.cpp
+    test_guidance.cpp
 )
 target_link_libraries(astracare_tests PRIVATE
     Catch2::Catch2WithMain

@@ -71,6 +71,42 @@ bool GuidanceLibrary::loadFromFile(const std::string& path) {
     }
 }
 
+bool GuidanceLibrary::loadEmergencyFromFile(const std::string& path) {
+    std::ifstream file(path);
+    if (!file.is_open()) return false;
+
+    try {
+        nlohmann::json data;
+        file >> data;
+        if (!data.is_object() || !data.contains("emergencies") ||
+            !data["emergencies"].is_array())
+            return false;
+
+        std::vector<GuidanceEntry> loaded;
+        for (const auto& item : data["emergencies"]) {
+            GuidanceEntry entry;
+            entry.id = item.at("emergencyId").get<std::string>();
+            entry.title = item.at("title").get<std::string>();
+            entry.category = "emergency";
+            entry.summary = item.at("summary").get<std::string>();
+            entry.source = item.at("source").get<std::string>();
+            if (item.contains("sourceNote"))
+                entry.source += "\n" + item.at("sourceNote").get<std::string>();
+
+            int number = 1;
+            for (const auto& step : item.at("steps")) {
+                entry.steps += std::to_string(number++) + ". " + step.get<std::string>() + "\n";
+            }
+            loaded.push_back(std::move(entry));
+        }
+
+        entries_ = std::move(loaded);
+        return true;
+    } catch (const nlohmann::json::exception&) {
+        return false;
+    }
+}
+
 // Find a medical guide using its unique ID
 std::optional<GuidanceEntry> GuidanceLibrary::findById(
     const std::string& id) const {
