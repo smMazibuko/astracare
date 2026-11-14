@@ -111,7 +111,7 @@ core/CMakeFiles/astracare_core.dir/src/guidance.cpp.obj: \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_bvector.h \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/vector.tcc \
  C:/GitHub/GITHUB~1/ASTRAC~1/core/include/astracare/models.h \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/json.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/json.hpp \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/algorithm \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_algo.h \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/algorithmfwd.h \
@@ -176,9 +176,9 @@ core/CMakeFiles/astracare_core.dir/src/guidance.cpp.obj: \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_memory_defs.h \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/utility \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_relops.h \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/adl_serializer.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/abi_macros.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/conversions/from_json.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/adl_serializer.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/abi_macros.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/conversions/from_json.hpp \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/forward_list \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/forward_list.h \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/forward_list.tcc \
@@ -212,30 +212,30 @@ core/CMakeFiles/astracare_core.dir/src/guidance.cpp.obj: \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/gslice_array.h \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/mask_array.h \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/indirect_array.h \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/exceptions.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/value_t.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/exceptions.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/value_t.hpp \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstdint \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/macro_scope.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/meta/detected.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/meta/void_t.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/thirdparty/hedley/hedley.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/macro_scope.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/meta/detected.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/meta/void_t.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/thirdparty/hedley/hedley.hpp \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/version \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cassert \
  C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/assert.h \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/string_escape.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/input/position_t.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/meta/cpp_future.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/meta/type_traits.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/iterators/iterator_traits.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/meta/call_std/begin.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/meta/call_std/end.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/json_fwd.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/string_concat.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/string_escape.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/input/position_t.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/meta/cpp_future.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/meta/type_traits.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/iterators/iterator_traits.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/meta/call_std/begin.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/meta/call_std/end.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/json_fwd.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/string_concat.hpp \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstring \
  C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/string.h \
  C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/sec_api/string_s.h \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/meta/identity_tag.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/meta/std_fs.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/meta/identity_tag.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/meta/std_fs.hpp \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/filesystem \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/fs_fwd.h \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/chrono.h \
@@ -270,34 +270,34 @@ core/CMakeFiles/astracare_core.dir/src/guidance.cpp.obj: \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/codecvt \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/fs_dir.h \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/fs_ops.h \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/conversions/to_json.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/iterators/iteration_proxy.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/byte_container_with_subtype.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/hash.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/input/binary_reader.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/input/input_adapters.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/conversions/to_json.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/iterators/iteration_proxy.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/byte_container_with_subtype.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/hash.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/input/binary_reader.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/input/input_adapters.hpp \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/numeric \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_numeric.h \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_numeric_defs.h \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/input/json_sax.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/input/lexer.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/meta/is_sax.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/input/parser.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/iterators/internal_iterator.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/iterators/primitive_iterator.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/iterators/iter_impl.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/iterators/json_reverse_iterator.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/json_custom_base_class.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/json_pointer.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/json_ref.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/output/binary_writer.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/output/output_adapters.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/output/serializer.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/conversions/to_chars.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/ordered_map.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/input/json_sax.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/input/lexer.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/meta/is_sax.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/input/parser.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/iterators/internal_iterator.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/iterators/primitive_iterator.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/iterators/iter_impl.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/iterators/json_reverse_iterator.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/json_custom_base_class.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/json_pointer.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/json_ref.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/output/binary_writer.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/output/output_adapters.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/output/serializer.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/conversions/to_chars.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/ordered_map.hpp \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/any \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/detail/macro_unscope.hpp \
- C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~2/include/nlohmann/thirdparty/hedley/hedley_undef.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/detail/macro_unscope.hpp \
+ C:/GitHub/GITHUB~1/ASTRAC~1/BUILD-~1/_deps/NLOHMA~3/include/nlohmann/thirdparty/hedley/hedley_undef.hpp \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/fstream \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/c++io.h \

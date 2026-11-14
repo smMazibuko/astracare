@@ -130,12 +130,12 @@ storage/clean: storage/CMakeFiles/astracare_storage.dir/clean
 core/CMakeFiles/astracare_core.dir/all:
 	$(MAKE) $(MAKESILENT) -f core\CMakeFiles\astracare_core.dir\build.make core/CMakeFiles/astracare_core.dir/depend
 	$(MAKE) $(MAKESILENT) -f core\CMakeFiles\astracare_core.dir\build.make core/CMakeFiles/astracare_core.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\GitHub\github projects\astracare\build-mingw\CMakeFiles" --progress-num=1,2,3,4 "Built target astracare_core"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\GitHub\github projects\astracare\build-mingw\CMakeFiles" --progress-num=1,2,3,4,5 "Built target astracare_core"
 .PHONY : core/CMakeFiles/astracare_core.dir/all
 
 # Build rule for subdir invocation for target.
 core/CMakeFiles/astracare_core.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\GitHub\github projects\astracare\build-mingw\CMakeFiles" 4
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\GitHub\github projects\astracare\build-mingw\CMakeFiles" 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 core/CMakeFiles/astracare_core.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "C:\GitHub\github projects\astracare\build-mingw\CMakeFiles" 0
 .PHONY : core/CMakeFiles/astracare_core.dir/rule
@@ -156,12 +156,12 @@ core/CMakeFiles/astracare_core.dir/clean:
 storage/CMakeFiles/astracare_storage.dir/all: core/CMakeFiles/astracare_core.dir/all
 	$(MAKE) $(MAKESILENT) -f storage\CMakeFiles\astracare_storage.dir\build.make storage/CMakeFiles/astracare_storage.dir/depend
 	$(MAKE) $(MAKESILENT) -f storage\CMakeFiles\astracare_storage.dir\build.make storage/CMakeFiles/astracare_storage.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\GitHub\github projects\astracare\build-mingw\CMakeFiles" --progress-num=5,6 "Built target astracare_storage"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="C:\GitHub\github projects\astracare\build-mingw\CMakeFiles" --progress-num=6,7 "Built target astracare_storage"
 .PHONY : storage/CMakeFiles/astracare_storage.dir/all
 
 # Build rule for subdir invocation for target.
 storage/CMakeFiles/astracare_storage.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\GitHub\github projects\astracare\build-mingw\CMakeFiles" 6
+	$(CMAKE_COMMAND) -E cmake_progress_start "C:\GitHub\github projects\astracare\build-mingw\CMakeFiles" 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 storage/CMakeFiles/astracare_storage.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "C:\GitHub\github projects\astracare\build-mingw\CMakeFiles" 0
 .PHONY : storage/CMakeFiles/astracare_storage.dir/rule

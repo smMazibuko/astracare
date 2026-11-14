@@ -153,6 +153,30 @@ src/alert_engine.cpp.s:
 	cd /d C:\GitHub\GITHUB~1\ASTRAC~1\BUILD-~1 && $(MAKE) $(MAKESILENT) -f core\CMakeFiles\astracare_core.dir\build.make core/CMakeFiles/astracare_core.dir/src/alert_engine.cpp.s
 .PHONY : src/alert_engine.cpp.s
 
+src/emergency.obj: src/emergency.cpp.obj
+.PHONY : src/emergency.obj
+
+# target to build an object file
+src/emergency.cpp.obj:
+	cd /d C:\GitHub\GITHUB~1\ASTRAC~1\BUILD-~1 && $(MAKE) $(MAKESILENT) -f core\CMakeFiles\astracare_core.dir\build.make core/CMakeFiles/astracare_core.dir/src/emergency.cpp.obj
+.PHONY : src/emergency.cpp.obj
+
+src/emergency.i: src/emergency.cpp.i
+.PHONY : src/emergency.i
+
+# target to preprocess a source file
+src/emergency.cpp.i:
+	cd /d C:\GitHub\GITHUB~1\ASTRAC~1\BUILD-~1 && $(MAKE) $(MAKESILENT) -f core\CMakeFiles\astracare_core.dir\build.make core/CMakeFiles/astracare_core.dir/src/emergency.cpp.i
+.PHONY : src/emergency.cpp.i
+
+src/emergency.s: src/emergency.cpp.s
+.PHONY : src/emergency.s
+
+# target to generate assembly for a file
+src/emergency.cpp.s:
+	cd /d C:\GitHub\GITHUB~1\ASTRAC~1\BUILD-~1 && $(MAKE) $(MAKESILENT) -f core\CMakeFiles\astracare_core.dir\build.make core/CMakeFiles/astracare_core.dir/src/emergency.cpp.s
+.PHONY : src/emergency.cpp.s
+
 src/guidance.obj: src/guidance.cpp.obj
 .PHONY : src/guidance.obj
 
@@ -213,6 +237,9 @@ help:
 	@echo ... src/alert_engine.obj
 	@echo ... src/alert_engine.i
 	@echo ... src/alert_engine.s
+	@echo ... src/emergency.obj
+	@echo ... src/emergency.i
+	@echo ... src/emergency.s
 	@echo ... src/guidance.obj
 	@echo ... src/guidance.i
 	@echo ... src/guidance.s
