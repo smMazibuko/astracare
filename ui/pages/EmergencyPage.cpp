@@ -10,16 +10,32 @@ EmergencyPage::EmergencyPage(QWidget* parent) : QWidget(parent) {
     root->setContentsMargins(16, 16, 16, 16);
     root->setSpacing(14);
 
-   // High-Contrast Emergency Header Banner
+    // Compact emergency status card. Keep the warning prominent without
+    // turning the entire content area into one oversized red strip.
     auto* sosBanner = new QFrame;
-    sosBanner->setStyleSheet("QFrame { background-color: #3b0d11; border: 2px solid #ef4444; border-radius: 12px; }");
+    sosBanner->setObjectName("EmergencyBanner");
+    sosBanner->setMaximumWidth(620);
     auto* bannerLayout = new QHBoxLayout(sosBanner);
-    bannerLayout->setContentsMargins(18, 14, 18, 14);
+    bannerLayout->setContentsMargins(16, 12, 18, 12);
+    bannerLayout->setSpacing(12);
 
-    auto* sosTitle = new QLabel("AUTONOMOUS EMERGENCY TRIAGE (SOS)  •  EARTH COMMS DELAY: 4–24 MIN ONE-WAY");
-    sosTitle->setStyleSheet("color: #ffffff; font-size: 14px; font-weight: 800;");
-    bannerLayout->addWidget(sosTitle);
-    root->addWidget(sosBanner);
+    auto* sosBadge = new QLabel("SOS");
+    sosBadge->setAlignment(Qt::AlignCenter);
+    sosBadge->setFixedSize(48, 30);
+    sosBadge->setStyleSheet("background-color: #ef4444; color: #ffffff; border-radius: 6px; font-size: 12px; font-weight: 800;");
+
+    auto* bannerText = new QVBoxLayout;
+    bannerText->setSpacing(2);
+    auto* sosTitle = new QLabel("AUTONOMOUS EMERGENCY TRIAGE");
+    sosTitle->setStyleSheet("color: #ffffff; font-size: 13px; font-weight: 800;");
+    auto* sosDetail = new QLabel("Earth comms delay: 4–24 min one-way");
+    sosDetail->setStyleSheet("color: #fca5a5; font-size: 11px;");
+    bannerText->addWidget(sosTitle);
+    bannerText->addWidget(sosDetail);
+
+    bannerLayout->addWidget(sosBadge);
+    bannerLayout->addLayout(bannerText);
+    root->addWidget(sosBanner, 0, Qt::AlignLeft);
 
     // Dynamic Protocol Selector Bar
     selectorLayout_ = new QHBoxLayout;
@@ -103,7 +119,7 @@ void EmergencyPage::displayProtocol(int index) {
     for (const QString& step : lines) {
         auto* cb = new QCheckBox(step.trimmed());
         cb->setStyleSheet(
-            "QCheckBox { background-color: #070a13; border: 1px solid #1b2438; border-radius: 8px; padding: 12px; color: #f3f4f6; font-size: 13px; }"
+            "QCheckBox { background-color: rgba(0, 0, 0, 60); border: 1px solid rgba(255, 255, 255, 38); border-radius: 8px; padding: 12px; color: #f3f4f6; font-size: 13px; }"
             "QCheckBox:checked { border-color: #10b981; color: #9ca3af; }"
         );
         stepsLayout_->addWidget(cb);
