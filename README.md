@@ -2,11 +2,11 @@
 
 ### Astronaut Health Monitoring Application
 
-> *"Your health companion, even when Earth is out of reach."*
+> _"Your health companion, even when Earth is out of reach."_
 
 Astracare is an **offline-first health monitoring app**, written in **C++**, that helps astronauts track their health, recognise potential problems early, and access reliable medical guidance when help from Earth is minutes (or hours) away.
 
- **Astracare supports astronauts; it does not replace doctors.** The app provides health guidance and alerts, not medical diagnoses.
+**Astracare supports astronauts; it does not replace doctors.** The app provides health guidance and alerts, not medical diagnoses.
 
 ---
 
@@ -37,12 +37,12 @@ Imagine an astronaut on the way to Mars suddenly experiencing chest pain, dizzin
 
 ### The Five Hazards of Spaceflight
 
-| Hazard | Impact |
-|---|---|
-| Space radiation | Long-term health risk |
-| Isolation and confinement | Mental health and wellbeing |
-| Distance from Earth | Delayed communication and medical help |
-| Gravity fields | Bone, muscle and cardiovascular changes |
+| Hazard                       | Impact                                     |
+| ---------------------------- | ------------------------------------------ |
+| Space radiation              | Long-term health risk                      |
+| Isolation and confinement    | Mental health and wellbeing                |
+| Distance from Earth          | Delayed communication and medical help     |
+| Gravity fields               | Bone, muscle and cardiovascular changes    |
 | Hostile, closed environments | Constant physical and psychological strain |
 
 ---
@@ -60,13 +60,13 @@ Astracare is designed to help astronauts:
 
 ## Features
 
-| Feature | Description |
-|---|---|
-| **Track** | Log and monitor vital signs and wellbeing (heart rate, blood pressure, sleep, mood, symptoms). |
-| **Guide** | Browse stored medical guidance and procedures, fully offline. |
-| **Alert** | Flag unusual health readings and trends against configurable reference ranges. |
-| **Report** | Save health history and generate medical reports to send to Earth when communication is available. |
-| **Respond** | Step-by-step emergency support procedures for urgent situations. |
+| Feature     | Description                                                                                        |
+| ----------- | -------------------------------------------------------------------------------------------------- |
+| **Track**   | Log and monitor vital signs and wellbeing (heart rate, blood pressure, sleep, mood, symptoms).     |
+| **Guide**   | Browse stored medical guidance and procedures, fully offline.                                      |
+| **Alert**   | Flag unusual health readings and trends against configurable reference ranges.                     |
+| **Report**  | Save health history and generate medical reports to send to Earth when communication is available. |
+| **Respond** | Step-by-step emergency support procedures for urgent situations.                                   |
 
 ---
 
@@ -91,18 +91,18 @@ An astronaut on a mission to Mars suddenly feels dizzy and tired.
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Language | C++17 (or C++20) |
-| Build system | CMake |
-| GUI | Qt 6 (Widgets or QML) |
-| Charts | Qt Charts |
-| Local storage | SQLite (via Qt SQL or `sqlite3` directly) |
+| Layer            | Technology                                                     |
+| ---------------- | -------------------------------------------------------------- |
+| Language         | C++17 (or C++20)                                               |
+| Build system     | CMake                                                          |
+| GUI              | Qt 6 (Widgets or QML)                                          |
+| Charts           | Qt Charts                                                      |
+| Local storage    | SQLite (via Qt SQL or `sqlite3` directly)                      |
 | Guidance content | JSON files bundled into the app (Qt resources / nlohmann-json) |
-| Report export | `QPdfWriter` (PDF) and JSON/CSV export |
-| Testing | Catch2 or GoogleTest, run through CTest |
-| Formatting | clang-format |
-| CI (optional) | GitHub Actions |
+| Report export    | `QPdfWriter` (PDF) and JSON/CSV export                         |
+| Testing          | Catch2 or GoogleTest, run through CTest                        |
+| Formatting       | clang-format                                                   |
+| CI (optional)    | GitHub Actions                                                 |
 
 **Why offline-first?** Every core feature (tracking, alerts, guidance, reports) must work with **zero network access**. Data lives in a local SQLite file, guidance is bundled inside the application, and nothing depends on a server.
 
@@ -189,9 +189,9 @@ astracare/
 <a id="-getting-started"></a>
 <a id="quick-start"></a>
 
-## Getting Started / Quick Start
+## Getting Started
 
-### ⚡ Quick Start (TL;DR)
+### Quick Start
 
 The core application and storage layers build without Qt. You only need **CMake 3.20+**, a **C++17 compiler**, and **Git**:
 
@@ -216,12 +216,12 @@ ctest --test-dir build --output-on-failure -C Release
 
 Before building Astracare, ensure your machine satisfies the following requirements:
 
-| Component | Minimum Version | Notes |
-|---|---|---|
-| **C++ Compiler** | C++17 support | MSVC 2019+ (Windows), GCC 9+ (Linux), or Clang 10+ (macOS/Linux) |
-| **CMake** | 3.20 or newer | Cross-platform build system |
-| **SQLite** | 3.x | Local health data storage engine |
-| **Git** | 2.x | Version control & automated dependency management (Catch2) |
+| Component        | Minimum Version | Notes                                                            |
+| ---------------- | --------------- | ---------------------------------------------------------------- |
+| **C++ Compiler** | C++17 support   | MSVC 2019+ (Windows), GCC 9+ (Linux), or Clang 10+ (macOS/Linux) |
+| **CMake**        | 3.20 or newer   | Cross-platform build system                                      |
+| **SQLite**       | 3.x             | Local health data storage engine                                 |
+| **Git**          | 2.x             | Version control & automated dependency management (Catch2)       |
 
 ---
 
@@ -255,15 +255,18 @@ sudo apt install -y \
     libsqlite3-dev
 ```
 
-*Fedora:*
+_Fedora:_
+
 ```bash
 sudo dnf install gcc-c++ cmake git qt6-qtbase-devel qt6-qtcharts-devel sqlite-devel
 ```
 
-*Arch Linux:*
+_Arch Linux:_
+
 ```bash
 sudo pacman -S base-devel cmake git qt6-base qt6-charts sqlite
 ```
+
 </details>
 
 <details>
@@ -281,6 +284,7 @@ brew install cmake git qt@6
 # Configure CMAKE_PREFIX_PATH so CMake can discover Qt 6
 export CMAKE_PREFIX_PATH=$(brew --prefix qt@6)
 ```
+
 </details>
 
 ---
@@ -288,12 +292,14 @@ export CMAKE_PREFIX_PATH=$(brew --prefix qt@6)
 ### Step-by-Step Build Guide
 
 #### 1. Clone the Repository
+
 ```bash
 git clone https://github.com/smMazibuko/astracare.git
 cd astracare
 ```
 
 #### 2. Configure with CMake
+
 Generate build files using CMake:
 
 ```bash
@@ -302,18 +308,20 @@ cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 
 ##### CMake Build Options:
 
-| CMake Flag | Default | Description |
-|---|---|---|
-| `-DASTRACARE_BUILD_UI=ON/OFF` | `OFF` | Optionally compiles the Qt desktop GUI application (`astracare`). |
-| `-DASTRACARE_BUILD_TESTS=ON/OFF` | `ON` | Fetches Catch2 and compiles the unit test suite (`astracare_tests`). |
-| `-DCMAKE_PREFIX_PATH=<path>` | Auto | Path to Qt 6 CMake directory if not detected automatically. |
+| CMake Flag                       | Default | Description                                                          |
+| -------------------------------- | ------- | -------------------------------------------------------------------- |
+| `-DASTRACARE_BUILD_UI=ON/OFF`    | `OFF`   | Optionally compiles the Qt desktop GUI application (`astracare`).    |
+| `-DASTRACARE_BUILD_TESTS=ON/OFF` | `ON`    | Fetches Catch2 and compiles the unit test suite (`astracare_tests`). |
+| `-DCMAKE_PREFIX_PATH=<path>`     | Auto    | Path to Qt 6 CMake directory if not detected automatically.          |
 
-*Example (Headless core & storage build without Qt UI):*
+_Example (Headless core & storage build without Qt UI):_
+
 ```bash
 cmake -S . -B build -DASTRACARE_BUILD_UI=OFF
 ```
 
-*Example (enabling the optional Qt UI on Windows):*
+_Example (enabling the optional Qt UI on Windows):_
+
 ```powershell
 cmake -S . -B build -DASTRACARE_BUILD_UI=ON -DCMAKE_PREFIX_PATH="C:/Qt/6.6.3/msvc2022_64"
 ```
@@ -321,6 +329,7 @@ cmake -S . -B build -DASTRACARE_BUILD_UI=ON -DCMAKE_PREFIX_PATH="C:/Qt/6.6.3/msv
 Qt is not needed for the default core build. Install Qt 6 with Widgets and Charts only if you need the desktop UI.
 
 #### 3. Compile the Application
+
 Compile all enabled targets in parallel:
 
 ```bash
@@ -348,12 +357,15 @@ Launch the compiled Astracare executable:
 
 > [!TIP]
 > **Windows DLL Troubleshooting**: If running `astracare.exe` outside an IDE reports missing Qt DLLs (`Qt6Widgets.dll`, `Qt6Core.dll`, `Qt6Charts.dll`), run `windeployqt` to bundle the required libraries into the output folder:
+>
 > ```powershell
 > windeployqt .\build\ui\Release\astracare.exe
 > ```
+>
 > Or launch the application from within your IDE or an environment where Qt's `bin/` directory is present in your `PATH`.
 
 #### IDE Support
+
 - **Qt Creator**: Open `astracare/CMakeLists.txt` directly (`File > Open File or Project...`). Select your configured Qt 6 kit and click **Build & Run** (or press `Ctrl+R` / `Cmd+R`).
 - **Visual Studio 2022**: Use `File > Open > Folder...` and select the `astracare` directory. CMake integration will configure and build targets natively.
 - **VS Code**: Install the **C/C++** and **CMake Tools** extensions. Set your kit to MSVC/GCC/Clang, select the `Release` variant, and press `F7` to build or `F5` / `Shift+F5` to debug/run.
@@ -377,6 +389,14 @@ ctest --test-dir build --output-on-failure -C Release
 # Windows:
 .\build\tests\Release\astracare_tests.exe
 ```
+
+### Automated Windows Releases
+
+GitHub Actions runs the headless core test suite for every pull request. A push to
+`main` builds the Qt desktop application on Windows, runs the tests, bundles the
+Qt runtime with `windeployqt`, and uploads `astracare-windows.zip` as a workflow
+artifact. To publish a permanent GitHub Release, push a version tag such as
+`v1.0.0`; the same Windows package is attached automatically.
 
 ---
 
@@ -407,18 +427,18 @@ Astracare is engineered to operate in deep space with zero internet connectivity
 
 ## Team and Task Division
 
-| # | Role | Owner | Responsibilities | Main deliverables |
-|---|---|---|---|---|
-| 1 | **Project Lead and Pitch** | @[Sphiwe](https://github.com/smMazibuko) | Keeps scope under control, manages the board and merges, owns the demo script and pitch deck, writes docs | README, pitch deck, demo script, final demo |
-| 2 | **UI Lead (Qt)** | @[Caitlyne](https://github.com/Allison-kk) | Main window, navigation, theme and stylesheet, dashboard, reusable widgets, space-themed look | Main window, Dashboard page, UI kit |
-| 3 | **Vitals Tracking (Track)** | @[Lethabo](https://github.com/ST10448170) | Input forms for heart rate, blood pressure, sleep, mood and symptoms; input validation; history table; trend charts | Track page, charts, validation |
-| 4 | **Alerts Engineer (Alert)** | @[Sunday](https://github.com/ST10394012) | Reference ranges, analysis logic, warning levels (Normal, Caution, Urgent), trend detection, unit tests | `alert_engine`, `ranges.json`, tests, alert banner widget |
-| 5 | **Medical Content and Emergency (Guide and Respond)** | @[Zandile](https://github.com/Nkateko-Zandi) | Research and write offline guidance from reputable sources, build step-by-step emergency procedures, searchable guidance library | Guidance JSON, Guide page, Emergency page, source list |
-| 6 | **Storage, Build and Reports (Report)** | @[Madiki](https://github.com/Caleb1128) | CMake setup, SQLite schema and data layer, report generation and export (PDF/JSON), CI, offline QA | `database`, Report page, export, CMake and CI, QA checklist |
+| #   | Role                                                  | Owner                                        | Responsibilities                                                                                                                 | Main deliverables                                           |
+| --- | ----------------------------------------------------- | -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| 1   | **Project Lead and Pitch**                            | @[Sphiwe](https://github.com/smMazibuko)     | Keeps scope under control, manages the board and merges, owns the demo script and pitch deck, writes docs                        | README, pitch deck, demo script, final demo                 |
+| 2   | **UI Lead (Qt)**                                      | @[Caitlyne](https://github.com/Allison-kk)   | Main window, navigation, theme and stylesheet, dashboard, reusable widgets, space-themed look                                    | Main window, Dashboard page, UI kit                         |
+| 3   | **Vitals Tracking (Track)**                           | @[Lethabo](https://github.com/ST10448170)    | Input forms for heart rate, blood pressure, sleep, mood and symptoms; input validation; history table; trend charts              | Track page, charts, validation                              |
+| 4   | **Alerts Engineer (Alert)**                           | @[Sunday](https://github.com/ST10394012)     | Reference ranges, analysis logic, warning levels (Normal, Caution, Urgent), trend detection, unit tests                          | `alert_engine`, `ranges.json`, tests, alert banner widget   |
+| 5   | **Medical Content and Emergency (Guide and Respond)** | @[Zandile](https://github.com/Nkateko-Zandi) | Research and write offline guidance from reputable sources, build step-by-step emergency procedures, searchable guidance library | Guidance JSON, Guide page, Emergency page, source list      |
+| 6   | **Storage, Build and Reports (Report)**               | @[Madiki](https://github.com/Caleb1128)      | CMake setup, SQLite schema and data layer, report generation and export (PDF/JSON), CI, offline QA                               | `database`, Report page, export, CMake and CI, QA checklist |
 
 ### How the pieces connect
 
-- **Role 6 → everyone**: provides the CMake skeleton and the database API in the first phase. *Everyone depends on this, so it ships first.*
+- **Role 6 → everyone**: provides the CMake skeleton and the database API in the first phase. _Everyone depends on this, so it ships first._
 - **Role 3 → Role 6**: vitals are saved through the `Database` class.
 - **Role 3 → Role 4**: the alert engine takes `VitalReading` data and returns `Alert` objects.
 - **Role 4 → Role 2**: alert levels drive the colours and banners on the dashboard.
@@ -435,13 +455,13 @@ Astracare is engineered to operate in deep space with zero internet connectivity
 
 ## Hackathon Timeline
 
-| Phase | Goal | Who |
-|---|---|---|
-| **1. Setup** | Everyone builds the empty app, agree on models and interfaces (headers), CMake skeleton, task board | Everyone (Roles 1 and 6 drive) |
-| **2. Build core** | Track page, alert engine, guidance content, database layer, main window | Roles 2 to 6 in parallel |
-| **3. Integrate** | Connect alerts to guidance, dashboard to live data, reports | Everyone |
-| **4. Polish and test** | Offline testing, bug fixes, UI polish, sample data for the demo | Everyone |
-| **5. Present** | Pitch deck final, demo rehearsal (run it at least twice) | Lead and everyone |
+| Phase                  | Goal                                                                                                | Who                            |
+| ---------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------ |
+| **1. Setup**           | Everyone builds the empty app, agree on models and interfaces (headers), CMake skeleton, task board | Everyone (Roles 1 and 6 drive) |
+| **2. Build core**      | Track page, alert engine, guidance content, database layer, main window                             | Roles 2 to 6 in parallel       |
+| **3. Integrate**       | Connect alerts to guidance, dashboard to live data, reports                                         | Everyone                       |
+| **4. Polish and test** | Offline testing, bug fixes, UI polish, sample data for the demo                                     | Everyone                       |
+| **5. Present**         | Pitch deck final, demo rehearsal (run it at least twice)                                            | Lead and everyone              |
 
 ---
 
@@ -477,14 +497,14 @@ Astracare is a hackathon prototype for educational and demonstration purposes. I
 
 ## Team
 
-| Name | Role | GitHub |
-|---|---|---|
-| Sphiwe | Project Lead and Pitch | [@smMazibuko](https://github.com/smMazibuko) |
-| Caitlyne | UI Lead (Qt) | [@Allison-kk](https://github.com/Allison-kk) |
-| Lethabo | Vitals Tracking | [@ST10448170](https://github.com/ST10448170) |
-| Sunday | Alerts Engineer | [@ST10394012](https://github.com/ST10394012) |
-| Zandile | Medical Content and Emergency | [@Nkateko-Zandi](https://github.com/Nkateko-Zandi) |
-| Madiki | Storage, Build and Reports | [@Caleb1128](https://github.com/Caleb1128) |
+| Name     | Role                          | GitHub                                             |
+| -------- | ----------------------------- | -------------------------------------------------- |
+| Sphiwe   | Project Lead and Pitch        | [@smMazibuko](https://github.com/smMazibuko)       |
+| Caitlyne | UI Lead (Qt)                  | [@Allison-kk](https://github.com/Allison-kk)       |
+| Lethabo  | Vitals Tracking               | [@ST10448170](https://github.com/ST10448170)       |
+| Sunday   | Alerts Engineer               | [@ST10394012](https://github.com/ST10394012)       |
+| Zandile  | Medical Content and Emergency | [@Nkateko-Zandi](https://github.com/Nkateko-Zandi) |
+| Madiki   | Storage, Build and Reports    | [@Caleb1128](https://github.com/Caleb1128)         |
 
 ---
 

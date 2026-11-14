@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 
 #include <QCoreApplication>
+#include <QDateTime>
 #include <QDir>
 #include <QFile>
 #include <QHBoxLayout>
@@ -10,6 +11,7 @@
 #include <QWidget>
 #include <QDateTime>
 
+#include "astracare/report.h"
 #include "pages/AlertsPage.h"
 #include "pages/DashboardPage.h"
 #include "pages/EmergencyPage.h"
@@ -38,7 +40,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     auto* headerLayout = new QHBoxLayout(header);
     headerLayout->setContentsMargins(20, 0, 20, 0);
 
-    auto* brandTitle = new QLabel("ASTRACARE  <span style='color:#2f8f5b; font-size:12px;'>CDS-EDGE</span>");
+    auto* brandTitle =
+        new QLabel("ASTRACARE  <span style='color:#2f8f5b; font-size:12px;'>CDS-EDGE</span>");
     brandTitle->setObjectName("BrandTitle");
 
     auto* quickSosBtn = new QPushButton("SOS / EMERGENCY");
@@ -82,9 +85,9 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     addPage("Reports", reportsPage_);
     addPage("Emergency", emergencyPage_);
 
-    QString guidancePath = QDir::cleanPath(
-        QDir(QCoreApplication::applicationDirPath()).filePath(
-            "../../../resources/guidance/guidance.json"));
+    QString guidancePath =
+        QDir::cleanPath(QDir(QCoreApplication::applicationDirPath())
+                            .filePath("../../../resources/guidance/guidance.json"));
     if (!QFile::exists(guidancePath))
         guidancePath = QDir::current().filePath("resources/guidance/guidance.json");
 
@@ -101,16 +104,14 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 
     connect(nav_, &QListWidget::currentRowChanged, pages_, &QStackedWidget::setCurrentIndex);
     connect(quickSosBtn, &QPushButton::clicked, this, [this]() { nav_->setCurrentRow(5); });
-    connect(dashboardPage_, &DashboardPage::navigateToPage, this, [this](int index) {
-        nav_->setCurrentRow(index);
-    });
+    connect(dashboardPage_, &DashboardPage::navigateToPage, this,
+            [this](int index) { nav_->setCurrentRow(index); });
     connect(dashboardPage_, &DashboardPage::openGuidanceById, this,
             [this](const QString& guidanceId) { openGuidance(guidanceId); });
     connect(alertsPage_, &AlertsPage::openGuidanceRequested, this,
             [this](const QString& guidanceId) { openGuidance(guidanceId); });
-    connect(alertsPage_, &AlertsPage::emergencyRequested, this, [this]() {
-        nav_->setCurrentRow(5);
-    });
+    connect(alertsPage_, &AlertsPage::emergencyRequested, this,
+            [this]() { nav_->setCurrentRow(5); });
 
     connect(trackPage_, &TrackPage::readingLogged, this,
             [this](const astracare::VitalReading& reading) {
@@ -147,7 +148,9 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     footer->setFixedHeight(32);
     auto* footerLayout = new QHBoxLayout(footer);
     footerLayout->setContentsMargins(20, 0, 20, 0);
-    auto* disclaimer = new QLabel("Disclaimer: Astracare supports astronauts; it does not replace doctors. Provides health guidance and alerts, not medical diagnoses.");
+    auto* disclaimer =
+        new QLabel("Disclaimer: Astracare supports astronauts; it does not replace doctors. "
+                   "Provides health guidance and alerts, not medical diagnoses.");
     disclaimer->setObjectName("DisclaimerText");
     disclaimer->setAlignment(Qt::AlignCenter);
     footerLayout->addWidget(disclaimer);
