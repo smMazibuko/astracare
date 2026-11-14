@@ -21,12 +21,14 @@ signals:
 private slots:
     void exportJsonReport();
     void exportCsvReport();
+    void exportPdfReport();
 
 private:
     QTextEdit* previewBox_;
     QLabel* statusLabel_;
     QPushButton* jsonBtn_;
     QPushButton* csvBtn_;
+    QPushButton* pdfBtn_;
 
     QString jsonPayload_;
     QString csvPayload_;

@@ -2,8 +2,12 @@
 
 #include <QFile>
 #include <QFileDialog>
+#include <QFont>
 #include <QFrame>
 #include <QHBoxLayout>
+#include <QPainter>
+#include <QPageSize>
+#include <QPdfWriter>
 #include <QTextStream>
 #include <QVBoxLayout>
 
@@ -34,10 +38,14 @@ ReportsPage::ReportsPage(QWidget* parent) : QWidget(parent) {
     csvBtn_ = new QPushButton("Export CSV");
     csvBtn_->setEnabled(false);
 
+    pdfBtn_ = new QPushButton("Export PDF");
+    pdfBtn_->setEnabled(false);
+
     topLayout->addLayout(infoCol, 1);
     topLayout->addWidget(refreshBtn);
     topLayout->addWidget(jsonBtn_);
     topLayout->addWidget(csvBtn_);
+    topLayout->addWidget(pdfBtn_);
 
     // Report Preview Box
     auto* previewCard = new QFrame;
@@ -69,6 +77,7 @@ ReportsPage::ReportsPage(QWidget* parent) : QWidget(parent) {
     connect(refreshBtn, &QPushButton::clicked, this, &ReportsPage::generateReportRequested);
     connect(jsonBtn_, &QPushButton::clicked, this, &ReportsPage::exportJsonReport);
     connect(csvBtn_, &QPushButton::clicked, this, &ReportsPage::exportCsvReport);
+    connect(pdfBtn_, &QPushButton::clicked, this, &ReportsPage::exportPdfReport);
 }
 
 void ReportsPage::setReportData(const QString& jsonContent, const QString& csvContent) {
@@ -78,8 +87,40 @@ void ReportsPage::setReportData(const QString& jsonContent, const QString& csvCo
     previewBox_->setPlainText(jsonPayload_);
     jsonBtn_->setEnabled(!jsonPayload_.isEmpty());
     csvBtn_->setEnabled(!csvPayload_.isEmpty());
+    pdfBtn_->setEnabled(!jsonPayload_.isEmpty());
     statusLabel_->setText("Report bundle ready for offline export.");
     statusLabel_->setStyleSheet("color: #2f8f5b; font-size: 11px; margin-top: 6px;");
+}
+
+void ReportsPage::exportPdfReport() {
+    if (jsonPayload_.isEmpty()) return;
+    const QString path = QFileDialog::getSaveFileName(this, "Save PDF Medical Report",
+                                                       "astracare_report.pdf", "PDF Files (*.pdf)");
+    if (path.isEmpty()) return;
+
+    QPdfWriter writer(path);
+    writer.setPageSize(QPageSize(QPageSize::A4));
+    writer.setTitle("Astracare Medical Report");
+    QPainter painter(&writer);
+    painter.setFont(QFont("Arial", 10));
+    const int margin = 80;
+    const int lineHeight = 18;
+    int y = margin;
+    painter.setFont(QFont("Arial", 16, QFont::Bold));
+    painter.drawText(margin, y, "ASTRACARE MEDICAL REPORT");
+    y += lineHeight * 2;
+    painter.setFont(QFont("Consolas", 9));
+    for (const QString& line : jsonPayload_.split('\n')) {
+        if (y > writer.height() - margin) {
+            writer.newPage();
+            y = margin;
+        }
+        painter.drawText(margin, y, line.left(150));
+        y += lineHeight;
+    }
+    painter.end();
+    statusLabel_->setText("Exported PDF report to: " + path);
+    statusLabel_->setStyleSheet("color: #10b981; font-size: 11px; font-weight: 700; margin-top: 6px;");
 }
 
 void ReportsPage::exportJsonReport() {

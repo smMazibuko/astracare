@@ -11,6 +11,7 @@ class QStackedWidget;
 class AlertsPage;
 class DashboardPage;
 class TrackPage;
+class ReportsPage;
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -25,6 +26,7 @@ private:
     AlertsPage* alertsPage_;
     DashboardPage* dashboardPage_;
     TrackPage* trackPage_;
+    ReportsPage* reportsPage_;
     astracare::Database database_;
     astracare::AlertEngine alertEngine_;
 };
