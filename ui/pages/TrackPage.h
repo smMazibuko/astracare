@@ -12,9 +12,10 @@
 
 class TrackPage : public QWidget {
     Q_OBJECT
+
 public:
     explicit TrackPage(QWidget* parent = nullptr);
-    
+
 public slots:
     void setReadings(const std::vector<astracare::VitalReading>& readings);
 
