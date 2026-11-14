@@ -1,0 +1,10 @@
+C:/GitHub/github projects/astracare/build-mingw/CMakeFiles/edit_cache.dir
+C:/GitHub/github projects/astracare/build-mingw/CMakeFiles/rebuild_cache.dir
+C:/GitHub/github projects/astracare/build-mingw/core/CMakeFiles/astracare_core.dir
+C:/GitHub/github projects/astracare/build-mingw/core/CMakeFiles/edit_cache.dir
+C:/GitHub/github projects/astracare/build-mingw/core/CMakeFiles/rebuild_cache.dir
+C:/GitHub/github projects/astracare/build-mingw/_deps/nlohmann_json-build/CMakeFiles/edit_cache.dir
+C:/GitHub/github projects/astracare/build-mingw/_deps/nlohmann_json-build/CMakeFiles/rebuild_cache.dir
+C:/GitHub/github projects/astracare/build-mingw/storage/CMakeFiles/astracare_storage.dir
+C:/GitHub/github projects/astracare/build-mingw/storage/CMakeFiles/edit_cache.dir
+C:/GitHub/github projects/astracare/build-mingw/storage/CMakeFiles/rebuild_cache.dir

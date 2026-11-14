@@ -1,13 +1,77 @@
+
+
 {
-  "_note": "PLACEHOLDER entry showing the format. Role 5 replaces this with researched, sourced content.",
   "entries": [
     {
-      "id": "cardiac-001",
-      "title": "Sample: High heart rate",
+      "id": "guide001",
+      "title": "Motion Sickness and Spatial Disorientation",
+      "category": "sensorimotor",
+      "summary": "Changes in gravity during spaceflight can trigger motion sickness and affect an astronaut's ability to orient themselves. These effects may interfere with mission tasks, vehicle controls and spacewalks.",
+      "steps": [
+        "Record the symptoms and when they started.",
+        "Document any difficulties with balance, orientation or performing mission tasks.",
+        "Notify the designated Crew Medical Officer for assessment.",
+        "Consult the applicable mission-approved medical procedure before taking further action."
+      ],
+      "source": "https://www.nasa.gov/reference/risk-of-altered-sensorimotor-and-vestibular-function/"
+    },
+    {
+      "id": "guide002",
+      "title": "Cardiovascular Adaptations",
       "category": "cardiac",
-      "summary": "Placeholder summary.",
-      "steps": ["Placeholder step 1", "Placeholder step 2"],
-      "source": "TODO"
-    }
+      "summary": "Low gravity and other spaceflight stressors can affect the heart and blood vessels. Potential risks include blood clots, heart arrhythmias, cardiovascular disease and low blood pressure, which may increase the risk of fainting during landing.",
+      "steps": [
+        "Record any cardiovascular symptoms and their onset.",
+        "Document available heart rate and blood pressure readings.",
+        "Notify the designated Crew Medical Officer if concerning symptoms or readings occur.",
+        "Consult the applicable mission-approved cardiovascular assessment or emergency procedure."
+      ],
+      "source": "https://www.nasa.gov/reference/risk-of-cardiovascular-adaptations/"
+    },
+    {
+      "id": "guide003",
+  "title": "Sleep Disruption and Fatigue",
+  "category": "sleep",
+  "summary": "Spaceflight stressors, including work overload, irregular light-dark cycles and disrupted sleep patterns, can affect astronaut health and mission performance. On the International Space Station, astronauts experience approximately 16 sunrises and sunsets each day, which can disrupt their sleep-wake cycle.",
+  "steps": [
+    "Record sleep duration, sleep quality and any reported fatigue.",
+    "Document recent workload and sleep schedule disruptions.",
+    "Review the crew's designated rest periods and approved sleep schedule.",
+    "Consult the Crew Medical Officer if sleep difficulties persist or affect mission performance.",
+    "Refer to mission-approved sleep management guidance."
+  ],
+  "source": "https://www.nasa.gov/reference/risk-from-inadequate-sleep-and-irregular-schedules/"
+    },
+    {
+  "id": "guide004",
+  "title": "Spaceflight-Associated Neuro-Ocular Syndrome (SANS)",
+  "category": "vision",
+  "summary": "Prolonged exposure to weightlessness can cause bodily fluids, including blood and cerebrospinal fluid, to shift toward the head. This may lead to optic nerve swelling, retinal folds and changes in the shape of the eye. These changes are associated with SANS, and their long-term health effects remain under investigation.",
+  "steps": [
+    "Record any reported changes in vision and when they started.",
+    "Document any associated symptoms or visual disturbances.",
+    "Notify the designated Crew Medical Officer for assessment.",
+    "Consult the applicable mission-approved vision assessment procedure.",
+    "Record assessment findings for ongoing monitoring."
+  ],
+  "source": "https://www.nasa.gov/reference/risk-of-spaceflight-associated-neuro-ocular-syndrome-sans/"
+},
+{
+  "id": "guide005",
+  "title": "Altered Immune System Responses",
+  "category": "immune",
+  "summary": "Spaceflight stressors, including radiation, microgravity and poor sleep, can affect astronauts' immune systems. These changes may contribute to allergic reactions, reactivation of dormant viruses such as those associated with cold sores and shingles, and an increased risk of infections.",
+  "steps": [
+    "Record any reported symptoms, including rashes, cold sores, unusual allergies or signs of infection.",
+    "Document when symptoms began and record available vital signs.",
+    "Notify the designated Crew Medical Officer for further assessment.",
+    "Consult the applicable mission-approved medical procedure.",
+    "Record assessment findings for follow-up monitoring."
+  ],
+  "source": "https://www.nasa.gov/reference/risk-of-altered-immune-system-responses/"
+}   
   ]
 }
+
+
+
