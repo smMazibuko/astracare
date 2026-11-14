@@ -1,10 +1,9 @@
 #pragma once
-// Owner: Role 3 (Vitals Tracking)
-
 #include <QWidget>
 
 class TrackPage : public QWidget {
     Q_OBJECT
-public:
+
+  public:
     explicit TrackPage(QWidget* parent = nullptr);
 };

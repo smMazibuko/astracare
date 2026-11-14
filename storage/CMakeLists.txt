@@ -6,4 +6,4 @@ target_link_libraries(astracare_storage PUBLIC astracare::core)
 
 # TODO(Role 6): link SQLite
 #   find_package(SQLite3 REQUIRED)
-#   target_link_libraries(astracare_storage PUBLIC SQLite::SQLite3)
+#   target_link_libraries(astracare_storage PUBLIC SQLite::SQLite3)`
