@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/astracare_core.dir/src/alert_engine.cpp.obj"
   "CMakeFiles/astracare_core.dir/src/alert_engine.cpp.obj.d"
+  "CMakeFiles/astracare_core.dir/src/emergency.cpp.obj"
+  "CMakeFiles/astracare_core.dir/src/emergency.cpp.obj.d"
   "CMakeFiles/astracare_core.dir/src/guidance.cpp.obj"
   "CMakeFiles/astracare_core.dir/src/guidance.cpp.obj.d"
   "CMakeFiles/astracare_core.dir/src/report.cpp.obj"

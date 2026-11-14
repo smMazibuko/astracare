@@ -17,7 +17,7 @@
 //Build unit tests
 ASTRACARE_BUILD_TESTS:BOOL=OFF
 
-//Build the Qt desktop application
+//Build the optional Qt desktop application
 ASTRACARE_BUILD_UI:BOOL=OFF
 
 //Value Computed by CMake

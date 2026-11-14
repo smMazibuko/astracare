@@ -113,11 +113,27 @@ core/CMakeFiles/astracare_core.dir/src/report.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/astracare_core.dir/src/report.cpp.s"
 	cd /d C:\GitHub\GITHUB~1\ASTRAC~1\BUILD-~1\core && C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\GitHub\github projects\astracare\core\src\report.cpp" -o CMakeFiles\astracare_core.dir\src\report.cpp.s
 
+core/CMakeFiles/astracare_core.dir/src/emergency.cpp.obj: core/CMakeFiles/astracare_core.dir/flags.make
+core/CMakeFiles/astracare_core.dir/src/emergency.cpp.obj: core/CMakeFiles/astracare_core.dir/includes_CXX.rsp
+core/CMakeFiles/astracare_core.dir/src/emergency.cpp.obj: C:/GitHub/github\ projects/astracare/core/src/emergency.cpp
+core/CMakeFiles/astracare_core.dir/src/emergency.cpp.obj: core/CMakeFiles/astracare_core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\GitHub\github projects\astracare\build-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object core/CMakeFiles/astracare_core.dir/src/emergency.cpp.obj"
+	cd /d C:\GitHub\GITHUB~1\ASTRAC~1\BUILD-~1\core && C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT core/CMakeFiles/astracare_core.dir/src/emergency.cpp.obj -MF CMakeFiles\astracare_core.dir\src\emergency.cpp.obj.d -o CMakeFiles\astracare_core.dir\src\emergency.cpp.obj -c "C:\GitHub\github projects\astracare\core\src\emergency.cpp"
+
+core/CMakeFiles/astracare_core.dir/src/emergency.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/astracare_core.dir/src/emergency.cpp.i"
+	cd /d C:\GitHub\GITHUB~1\ASTRAC~1\BUILD-~1\core && C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\GitHub\github projects\astracare\core\src\emergency.cpp" > CMakeFiles\astracare_core.dir\src\emergency.cpp.i
+
+core/CMakeFiles/astracare_core.dir/src/emergency.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/astracare_core.dir/src/emergency.cpp.s"
+	cd /d C:\GitHub\GITHUB~1\ASTRAC~1\BUILD-~1\core && C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\GitHub\github projects\astracare\core\src\emergency.cpp" -o CMakeFiles\astracare_core.dir\src\emergency.cpp.s
+
 # Object files for target astracare_core
 astracare_core_OBJECTS = \
 "CMakeFiles/astracare_core.dir/src/alert_engine.cpp.obj" \
 "CMakeFiles/astracare_core.dir/src/guidance.cpp.obj" \
-"CMakeFiles/astracare_core.dir/src/report.cpp.obj"
+"CMakeFiles/astracare_core.dir/src/report.cpp.obj" \
+"CMakeFiles/astracare_core.dir/src/emergency.cpp.obj"
 
 # External object files for target astracare_core
 astracare_core_EXTERNAL_OBJECTS =
@@ -125,9 +141,10 @@ astracare_core_EXTERNAL_OBJECTS =
 core/libastracare_core.a: core/CMakeFiles/astracare_core.dir/src/alert_engine.cpp.obj
 core/libastracare_core.a: core/CMakeFiles/astracare_core.dir/src/guidance.cpp.obj
 core/libastracare_core.a: core/CMakeFiles/astracare_core.dir/src/report.cpp.obj
+core/libastracare_core.a: core/CMakeFiles/astracare_core.dir/src/emergency.cpp.obj
 core/libastracare_core.a: core/CMakeFiles/astracare_core.dir/build.make
 core/libastracare_core.a: core/CMakeFiles/astracare_core.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="C:\GitHub\github projects\astracare\build-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libastracare_core.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="C:\GitHub\github projects\astracare\build-mingw\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libastracare_core.a"
 	cd /d C:\GitHub\GITHUB~1\ASTRAC~1\BUILD-~1\core && $(CMAKE_COMMAND) -P CMakeFiles\astracare_core.dir\cmake_clean_target.cmake
 	cd /d C:\GitHub\GITHUB~1\ASTRAC~1\BUILD-~1\core && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\astracare_core.dir\link.txt --verbose=$(VERBOSE)
 

@@ -1,2 +1,2 @@
-C:\Qt\Tools\mingw1310_64\bin\ar.exe qc libastracare_core.a CMakeFiles/astracare_core.dir/src/alert_engine.cpp.obj CMakeFiles/astracare_core.dir/src/guidance.cpp.obj CMakeFiles/astracare_core.dir/src/report.cpp.obj
+C:\Qt\Tools\mingw1310_64\bin\ar.exe qc libastracare_core.a CMakeFiles/astracare_core.dir/src/alert_engine.cpp.obj CMakeFiles/astracare_core.dir/src/guidance.cpp.obj CMakeFiles/astracare_core.dir/src/report.cpp.obj CMakeFiles/astracare_core.dir/src/emergency.cpp.obj
 C:\Qt\Tools\mingw1310_64\bin\ranlib.exe libastracare_core.a

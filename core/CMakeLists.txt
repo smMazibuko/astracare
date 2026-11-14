@@ -13,6 +13,7 @@ add_library(astracare_core
     src/alert_engine.cpp
     src/guidance.cpp
     src/report.cpp
+    src/emergency.cpp
 )
 add_library(astracare::core ALIAS astracare_core)
 
