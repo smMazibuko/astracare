@@ -2,6 +2,7 @@
 
 #include <QHBoxLayout>
 #include <QListWidget>
+#include <QScrollArea>
 #include <QStackedWidget>
 #include <QWidget>
 
@@ -14,7 +15,8 @@
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle("Astracare • Autonomous Crew Health");
-    resize(1240, 750);
+    resize(1180, 700);
+    setMinimumSize(900, 600);
 
     database_.open("astracare.db");
 
@@ -31,19 +33,14 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     auto* headerLayout = new QHBoxLayout(header);
     headerLayout->setContentsMargins(20, 0, 20, 0);
 
-    auto* brandTitle = new QLabel("ASTRACARE  <span style='color:#00d2ff; font-size:12px;'>CDS-EDGE</span>");
-    brandTitle->setStyleSheet("color: #ffffff; font-size: 17px; font-weight: 800; letter-spacing: 1px;");
-
-    auto* offlineBadge = new QLabel("● 100% OFFLINE / AIR-GAPPED");
-    offlineBadge->setObjectName("OfflineBadge");
+    auto* brandTitle = new QLabel("ASTRACARE  <span style='color:#2f8f5b; font-size:12px;'>CDS-EDGE</span>");
+    brandTitle->setObjectName("BrandTitle");
 
     auto* quickSosBtn = new QPushButton("SOS / EMERGENCY");
     quickSosBtn->setObjectName("SosBtn");
 
     headerLayout->addWidget(brandTitle);
     headerLayout->addStretch();
-    headerLayout->addWidget(offlineBadge);
-    headerLayout->addSpacing(10);
     headerLayout->addWidget(quickSosBtn);
 
     // Middle Workspace (Sidebar + Stacked Pages)
@@ -59,7 +56,12 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 
     auto addPage = [this](const QString& name, QWidget* page) {
         nav_->addItem(name);
-        pages_->addWidget(page);
+        auto* scroll = new QScrollArea;
+        scroll->setFrameShape(QFrame::NoFrame);
+        scroll->setWidgetResizable(true);
+        scroll->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        scroll->setWidget(page);
+        pages_->addWidget(scroll);
     };
 
     dashboardPage_ = new DashboardPage;
@@ -99,7 +101,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     auto* footerLayout = new QHBoxLayout(footer);
     footerLayout->setContentsMargins(20, 0, 20, 0);
     auto* disclaimer = new QLabel("Disclaimer: Astracare supports astronauts; it does not replace doctors. Provides health guidance and alerts, not medical diagnoses.");
-    disclaimer->setStyleSheet("color: #6b7280; font-size: 11px;");
+    disclaimer->setObjectName("DisclaimerText");
     disclaimer->setAlignment(Qt::AlignCenter);
     footerLayout->addWidget(disclaimer);
 
