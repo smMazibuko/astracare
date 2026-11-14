@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 
+#include <array>
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QDir>
@@ -9,7 +10,6 @@
 #include <QScrollArea>
 #include <QStackedWidget>
 #include <QWidget>
-#include <QDateTime>
 
 #include "astracare/report.h"
 #include "pages/AlertsPage.h"
@@ -18,7 +18,6 @@
 #include "pages/GuidePage.h"
 #include "pages/ReportsPage.h"
 #include "pages/TrackPage.h"
-#include "astracare/report.h"
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     setWindowTitle("Astracare • Autonomous Crew Health");
@@ -85,22 +84,40 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     addPage("Reports", reportsPage_);
     addPage("Emergency", emergencyPage_);
 
-    QString guidancePath =
-        QDir::cleanPath(QDir(QCoreApplication::applicationDirPath())
-                            .filePath("../../../resources/guidance/guidance.json"));
-    if (!QFile::exists(guidancePath))
-        guidancePath = QDir::current().filePath("resources/guidance/guidance.json");
+    const QString applicationResources = QDir(QCoreApplication::applicationDirPath()).filePath("resources");
+    const QString bundledResources = QDir::cleanPath(
+        QDir(QCoreApplication::applicationDirPath()).filePath("../../../resources"));
+    const QString localResources = QDir::current().filePath("resources");
+    QString resourceRoot = localResources;
+    if (QFile::exists(QDir(applicationResources).filePath("guidance/guidance.json")))
+        resourceRoot = applicationResources;
+    else if (QFile::exists(QDir(bundledResources).filePath("guidance/guidance.json")))
+        resourceRoot = bundledResources;
+    const QString guidancePath = QDir(resourceRoot).filePath("guidance/guidance.json");
+    const QString emergencyPath = QDir(resourceRoot).filePath("guidance/emergency.json");
+    const QString rangesPath = QDir(resourceRoot).filePath("ranges.json");
 
     if (guidanceLibrary_.loadFromFile(guidancePath.toStdString())) {
         guidePage_->setGuidanceEntries(guidanceLibrary_.all());
-
-        std::vector<astracare::GuidanceEntry> emergencyProtocols;
-        for (const auto& entry : guidanceLibrary_.all()) {
-            if (entry.category == "emergency")
-                emergencyProtocols.push_back(entry);
-        }
-        emergencyPage_->setEmergencyProtocols(emergencyProtocols);
     }
+    if (emergencyLibrary_.loadEmergencyFromFile(emergencyPath.toStdString())) {
+        emergencyPage_->setEmergencyProtocols(emergencyLibrary_.all());
+    }
+    alertEngine_.loadRangesFromFile(rangesPath.toStdString());
+
+    const auto formatBand = [](const astracare::Band& band, const QString& unit) {
+        const QString low = band.low ? QString::number(*band.low) : QString("—");
+        const QString high = band.high ? QString::number(*band.high) : QString("—");
+        return low + "–" + high + (unit.isEmpty() ? QString() : " " + unit);
+    };
+    const auto& ranges = alertEngine_.ranges();
+    alertsPage_->setThresholds({
+        {"Heart rate", formatBand(ranges.heartRate.caution, "bpm"), formatBand(ranges.heartRate.urgent, "bpm")},
+        {"Blood pressure (systolic)", formatBand(ranges.systolic.caution, "mmHg"), formatBand(ranges.systolic.urgent, "mmHg")},
+        {"Blood pressure (diastolic)", formatBand(ranges.diastolic.caution, "mmHg"), formatBand(ranges.diastolic.urgent, "mmHg")},
+        {"Sleep", formatBand(ranges.sleepHours.caution, "hours"), formatBand(ranges.sleepHours.urgent, "hours")},
+        {"Mood", formatBand(ranges.mood.caution, "/ 5"), formatBand(ranges.mood.urgent, "/ 5")},
+    });
 
     connect(nav_, &QListWidget::currentRowChanged, pages_, &QStackedWidget::setCurrentIndex);
     connect(quickSosBtn, &QPushButton::clicked, this, [this]() { nav_->setCurrentRow(5); });

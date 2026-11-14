@@ -36,4 +36,5 @@ private:
     astracare::Database database_;
     astracare::AlertEngine alertEngine_;
     astracare::GuidanceLibrary guidanceLibrary_;
+    astracare::GuidanceLibrary emergencyLibrary_;
 };
