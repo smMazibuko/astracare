@@ -1,0 +1,2 @@
+C:\Qt\Tools\mingw1310_64\bin\ar.exe qc libastracare_storage.a CMakeFiles/astracare_storage.dir/src/database.cpp.obj
+C:\Qt\Tools\mingw1310_64\bin\ranlib.exe libastracare_storage.a

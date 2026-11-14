@@ -1,6 +1,8 @@
 #include "pages/TrackPage.h"
 
+#include <QCheckBox>
 #include <QDateTime>
+#include <QDoubleSpinBox>
 #include <QFormLayout>
 #include <QFrame>
 #include <QGridLayout>
@@ -9,7 +11,11 @@
 #include <QLabel>
 #include <QMessageBox>
 #include <QPushButton>
+#include <QSpinBox>
+#include <QTableWidget>
 #include <QVBoxLayout>
+
+#include "astracare/models.h"
 
 TrackPage::TrackPage(QWidget* parent) : QWidget(parent) {
     auto* root = new QVBoxLayout(this);
@@ -122,12 +128,18 @@ TrackPage::TrackPage(QWidget* parent) : QWidget(parent) {
 
     root->addWidget(formCard);
     root->addWidget(tableCard, 1);
-
    
     connect(saveBtn, &QPushButton::clicked, this, &TrackPage::onSaveClicked);
 }
 
 void TrackPage::onSaveClicked() {
+    // 1. Validation Logic
+    if (sysInput_->value() <= diaInput_->value()) {
+        QMessageBox::warning(this, "Invalid Data", "Systolic BP must be higher than Diastolic BP.");
+        return;
+    }
+
+    // 2. Create the struct
     astracare::VitalReading r;
     r.timestamp = QDateTime::currentDateTimeUtc().toString(Qt::ISODate).toStdString();
     r.heartRate = hrInput_->value();
@@ -145,6 +157,7 @@ void TrackPage::onSaveClicked() {
     }
     r.symptoms = selected.join(", ").toStdString();
 
+    // 3. Update UI and send signal
     appendRowToTable(r);
     emit readingLogged(r);
 }
