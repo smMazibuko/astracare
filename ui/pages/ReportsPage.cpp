@@ -46,7 +46,7 @@ ReportsPage::ReportsPage(QWidget* parent) : QWidget(parent) {
     previewLayout->setContentsMargins(18, 16, 18, 16);
 
     auto* prevLabel = new QLabel("TELEMETRY BUNDLE PREVIEW");
-    prevLabel->setStyleSheet("color: #00d2ff; font-size: 11px; font-weight: 700; margin-bottom: 6px;");
+    prevLabel->setStyleSheet("color: #2f8f5b; font-size: 11px; font-weight: 700; margin-bottom: 6px;");
 
     previewBox_ = new QTextEdit;
     previewBox_->setReadOnly(true);
@@ -79,7 +79,7 @@ void ReportsPage::setReportData(const QString& jsonContent, const QString& csvCo
     jsonBtn_->setEnabled(!jsonPayload_.isEmpty());
     csvBtn_->setEnabled(!csvPayload_.isEmpty());
     statusLabel_->setText("Report bundle ready for offline export.");
-    statusLabel_->setStyleSheet("color: #00d2ff; font-size: 11px; margin-top: 6px;");
+    statusLabel_->setStyleSheet("color: #2f8f5b; font-size: 11px; margin-top: 6px;");
 }
 
 void ReportsPage::exportJsonReport() {

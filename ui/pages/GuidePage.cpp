@@ -22,13 +22,13 @@ GuidePage::GuidePage(QWidget* parent) : QWidget(parent) {
 
     searchBox_ = new QLineEdit;
     searchBox_->setPlaceholderText("Search medical procedures...");
-    searchBox_->setStyleSheet("background-color: #070a13; color: #ffffff; border: 1px solid #1b2438; border-radius: 8px; padding: 8px 12px;");
+    searchBox_->setStyleSheet("background-color: rgba(0, 0, 0, 80); color: #ffffff; border: 1px solid rgba(255, 255, 255, 42); border-radius: 8px; padding: 8px 12px;");
 
     guideList_ = new QListWidget;
     guideList_->setStyleSheet(
-        "QListWidget { background-color: #070a13; border: 1px solid #1b2438; border-radius: 8px; outline: none; }"
-        "QListWidget::item { color: #d1d5db; padding: 12px; border-bottom: 1px solid #1b2438; }"
-        "QListWidget::item:selected { background-color: #1b2438; color: #00d2ff; font-weight: 700; }"
+        "QListWidget { background-color: rgba(0, 0, 0, 60); border: 1px solid rgba(255, 255, 255, 38); border-radius: 8px; outline: none; }"
+        "QListWidget::item { color: #d1d5db; padding: 12px; border-bottom: 1px solid rgba(255, 255, 255, 24); }"
+        "QListWidget::item:selected { background-color: rgba(47, 143, 91, 38); color: #2f8f5b; font-weight: 700; }"
     );
 
     leftLayout->addWidget(listTitle);
@@ -43,14 +43,14 @@ GuidePage::GuidePage(QWidget* parent) : QWidget(parent) {
     rightLayout->setSpacing(12);
 
     categoryBadge_ = new QLabel("GUIDANCE LIBRARY");
-    categoryBadge_->setStyleSheet("color: #00d2ff; font-family: 'Consolas', monospace; font-size: 11px; font-weight: 700;");
+    categoryBadge_->setStyleSheet("color: #2f8f5b; font-family: 'Consolas', monospace; font-size: 11px; font-weight: 700;");
 
     titleLabel_ = new QLabel("No guidance entries loaded");
     titleLabel_->setWordWrap(true);
     titleLabel_->setStyleSheet("color: #ffffff; font-size: 18px; font-weight: 700;");
 
     contentBrowser_ = new QTextBrowser;
-    contentBrowser_->setStyleSheet("background-color: #070a13; border: 1px solid #1b2438; border-radius: 8px; padding: 14px; color: #e5e7eb; font-size: 13px;");
+    contentBrowser_->setStyleSheet("background-color: rgba(0, 0, 0, 60); border: 1px solid rgba(255, 255, 255, 38); border-radius: 8px; padding: 14px; color: #e5e7eb; font-size: 13px;");
     contentBrowser_->setPlainText("Awaiting offline guidance entries from core guidance loader...");
 
     rightLayout->addWidget(categoryBadge_);
@@ -104,10 +104,10 @@ void GuidePage::onGuideSelected(int row) {
     QString stepsHtml = QString::fromStdString(g.steps).replace("\n", "<br><br>");
     QString html = QString(
         "<p style='color:#9ca3af;'><b>Summary:</b> %1</p>"
-        "<hr style='border:1px solid #1b2438; margin:12px 0;'>"
-        "<p style='color:#00d2ff; font-weight:bold;'>PROCEDURE STEPS:</p>"
+        "<hr style='border:1px solid #273029; margin:12px 0;'>"
+        "<p style='color:#2f8f5b; font-weight:bold;'>PROCEDURE STEPS:</p>"
         "<p style='line-height:1.6;'>%2</p>"
-        "<hr style='border:1px solid #1b2438; margin:12px 0;'>"
+        "<hr style='border:1px solid #273029; margin:12px 0;'>"
         "<p style='color:#6b7280; font-size:11px;'>Source: %3</p>"
     ).arg(QString::fromStdString(g.summary), stepsHtml, QString::fromStdString(g.source));
 

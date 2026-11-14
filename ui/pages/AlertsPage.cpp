@@ -22,7 +22,7 @@ AlertsPage::AlertsPage(QWidget* parent) : QWidget(parent) {
     emptyStateLabel_ = new QLabel("No active health alerts. All evaluated readings are within normal parameters.");
     emptyStateLabel_->setWordWrap(true);
     emptyStateLabel_->setStyleSheet(
-        "background-color: #070a13; border: 1px solid #1b2438; border-radius: 8px; "
+        "background-color: rgba(0, 0, 0, 60); border: 1px solid rgba(255, 255, 255, 38); border-radius: 8px; "
         "padding: 16px; color: #9ca3af; font-size: 12px;"
     );
 
@@ -42,7 +42,7 @@ AlertsPage::AlertsPage(QWidget* parent) : QWidget(parent) {
     rangeLayout->setContentsMargins(18, 16, 18, 16);
 
     auto* rangeTitle = new QLabel("CONFIGURED THRESHOLD RANGES");
-    rangeTitle->setStyleSheet("color: #00d2ff; font-size: 13px; font-weight: 700; margin-bottom: 8px;");
+    rangeTitle->setStyleSheet("color: #2f8f5b; font-size: 13px; font-weight: 700; margin-bottom: 8px;");
 
     rangeTable_ = new QTableWidget(0, 3);
     rangeTable_->setHorizontalHeaderLabels({"Biometric", "Normal Range", "Alert Trigger"});
@@ -50,8 +50,8 @@ AlertsPage::AlertsPage(QWidget* parent) : QWidget(parent) {
     rangeTable_->verticalHeader()->setVisible(false);
     rangeTable_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     rangeTable_->setStyleSheet(
-        "QTableWidget { background-color: #070a13; border: 1px solid #1b2438; border-radius: 8px; color: #e5e7eb; font-size: 12px; }"
-        "QHeaderView::section { background-color: #0d1322; color: #9ca3af; border: none; padding: 8px; font-weight: 700; }"
+        "QTableWidget { background-color: rgba(0, 0, 0, 60); border: 1px solid rgba(255, 255, 255, 38); border-radius: 8px; color: #e5e7eb; font-size: 12px; }"
+        "QHeaderView::section { background-color: rgba(255, 255, 255, 12); color: #9ca3af; border: none; padding: 8px; font-weight: 700; }"
     );
 
     rangeLayout->addWidget(rangeTitle);

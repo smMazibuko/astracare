@@ -1,27 +1,44 @@
-/* Astracare Space-Grade Dark Theme */
+/* Astracare glass space theme */
 QMainWindow, QWidget#CentralContainer {
-    background-color: #070a13;
+    background-color: #050607;
     color: #f3f4f6;
     font-family: "Segoe UI", Arial, sans-serif;
     font-size: 13px;
 }
 
+QWidget {
+    selection-background-color: #2f8f5b;
+    selection-color: #071006;
+}
+
 /* Header & Footer Bars */
 QFrame#FlightHeader {
-    background-color: #0d1322;
-    border-bottom: 1px solid #1b2438;
+    background-color: rgba(18, 21, 23, 235);
+    border-bottom: 1px solid rgba(255, 255, 255, 35);
 }
 
 QFrame#DisclaimerFooter {
-    background-color: #0d1322;
-    border-top: 1px solid #1b2438;
+    background-color: rgba(18, 21, 23, 235);
+    border-top: 1px solid rgba(255, 255, 255, 35);
+}
+
+QLabel#BrandTitle {
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+QLabel#DisclaimerText {
+    color: #6b7280;
+    font-size: 11px;
 }
 
 /* Sidebar Navigation */
 QListWidget#SideNav {
-    background-color: #0d1322;
+    background-color: rgba(12, 14, 16, 220);
     border: none;
-    border-right: 1px solid #1b2438;
+    border-right: 1px solid rgba(255, 255, 255, 28);
     outline: none;
     padding-top: 12px;
     font-size: 14px;
@@ -36,53 +53,59 @@ QListWidget#SideNav::item {
 }
 
 QListWidget#SideNav::item:hover {
-    background-color: #1b2438;
+    background-color: rgba(255, 255, 255, 18);
     color: #ffffff;
 }
 
 QListWidget#SideNav::item:selected {
-    background-color: #00d2ff;
-    color: #070a13;
+    background-color: #2f8f5b;
+    color: #071006;
     font-weight: 700;
 }
 
 /* Cards & Panels */
 QFrame#SpaceCard {
-    background-color: #0d1322;
-    border: 1px solid #1b2438;
+    background-color: rgba(255, 255, 255, 12);
+    border: 1px solid rgba(255, 255, 255, 38);
+    border-radius: 12px;
+}
+
+QFrame#EmergencyBanner {
+    background-color: #3b0d11;
+    border: 2px solid #ef4444;
     border-radius: 12px;
 }
 
 QFrame#MetricTile {
-    background-color: #070a13;
-    border: 1px solid #1b2438;
+    background-color: rgba(0, 0, 0, 45);
+    border: 1px solid rgba(255, 255, 255, 26);
     border-radius: 8px;
 }
 
 /* Buttons */
 QPushButton {
-    background-color: #1b2438;
+    background-color: rgba(255, 255, 255, 12);
     color: #f3f4f6;
-    border: 1px solid #2a3754;
+    border: 1px solid rgba(255, 255, 255, 42);
     border-radius: 8px;
     padding: 8px 14px;
     font-weight: 600;
 }
 
 QPushButton:hover {
-    background-color: #26334d;
-    border-color: #00d2ff;
+    background-color: rgba(31, 93, 58, 28);
+    border-color: #2f8f5b;
 }
 
 QPushButton#PrimaryBtn {
-    background-color: #00d2ff;
-    color: #070a13;
+    background-color: #2f8f5b;
+    color: #071006;
     border: none;
     font-weight: 700;
 }
 
 QPushButton#PrimaryBtn:hover {
-    background-color: #38bdf8;
+    background-color: #3aa86a;
 }
 
 QPushButton#SosBtn {
@@ -99,12 +122,54 @@ QPushButton#SosBtn:hover {
 
 /* Status Pills & Badges */
 QLabel#OfflineBadge {
-    background-color: #070a13;
-    color: #00d2ff;
-    border: 1px solid #1b2438;
+    background-color: rgba(31, 93, 58, 28);
+    color: #72b887;
+    border: 1px solid rgba(31, 93, 58, 125);
     border-radius: 6px;
     padding: 5px 10px;
     font-family: "Consolas", monospace;
     font-weight: 700;
     font-size: 12px;
+}
+
+QLineEdit, QSpinBox, QDoubleSpinBox {
+    background-color: rgba(0, 0, 0, 80);
+    color: #f3f4f6;
+    border: 1px solid rgba(255, 255, 255, 42);
+    border-radius: 8px;
+    padding: 8px 10px;
+}
+
+QLineEdit:focus, QSpinBox:focus, QDoubleSpinBox:focus {
+    border: 1px solid #2f8f5b;
+}
+
+QCheckBox {
+    color: #d1d5db;
+    spacing: 8px;
+}
+
+QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgba(255, 255, 255, 70);
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 80);
+}
+
+QCheckBox::indicator:checked {
+    background-color: #2f8f5b;
+    border-color: #2f8f5b;
+}
+
+QScrollBar:vertical {
+    background: transparent;
+    width: 10px;
+    margin: 4px;
+}
+
+QScrollBar::handle:vertical {
+    background: rgba(31, 93, 58, 150);
+    border-radius: 5px;
+    min-height: 24px;
 }

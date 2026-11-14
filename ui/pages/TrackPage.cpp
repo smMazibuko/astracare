@@ -41,7 +41,7 @@ TrackPage::TrackPage(QWidget* parent) : QWidget(parent) {
     fields->setSpacing(10);
 
     auto styleSpin = [](QWidget* w) {
-        w->setStyleSheet("background-color: #070a13; color: #ffffff; border: 1px solid #1b2438; border-radius: 6px; padding: 6px;");
+        w->setStyleSheet("background-color: rgba(0, 0, 0, 80); color: #ffffff; border: 1px solid rgba(255, 255, 255, 42); border-radius: 8px; padding: 8px;");
     };
 
     hrInput_ = new QSpinBox;
@@ -82,7 +82,7 @@ TrackPage::TrackPage(QWidget* parent) : QWidget(parent) {
     fields->addRow("Mood Score:", moodInput_);
 
     auto* symLabel = new QLabel("REPORTED SYMPTOMS:");
-    symLabel->setStyleSheet("color: #00d2ff; font-size: 11px; font-weight: 700; margin-top: 6px;");
+    symLabel->setStyleSheet("color: #2f8f5b; font-size: 11px; font-weight: 700; margin-top: 6px;");
 
     auto* symGrid = new QGridLayout;
     QStringList symptoms = {"Dizziness", "Headache", "Chest Pain", "Fatigue", "Vision Blur", "Nausea"};
@@ -119,8 +119,8 @@ TrackPage::TrackPage(QWidget* parent) : QWidget(parent) {
     historyTable_->verticalHeader()->setVisible(false);
     historyTable_->setEditTriggers(QAbstractItemView::NoEditTriggers);
     historyTable_->setStyleSheet(
-        "QTableWidget { background-color: #070a13; border: 1px solid #1b2438; border-radius: 8px; gridline-color: #1b2438; color: #e5e7eb; }"
-        "QHeaderView::section { background-color: #0d1322; color: #9ca3af; border: none; padding: 8px; font-weight: 700; font-size: 11px; }"
+        "QTableWidget { background-color: rgba(0, 0, 0, 60); border: 1px solid rgba(255, 255, 255, 38); border-radius: 8px; gridline-color: rgba(255, 255, 255, 24); color: #e5e7eb; }"
+        "QHeaderView::section { background-color: rgba(255, 255, 255, 12); color: #9ca3af; border: none; padding: 8px; font-weight: 700; font-size: 11px; }"
     );
 
     tableLayout->addWidget(tableTitle);
