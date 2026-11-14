@@ -1,0 +1,110 @@
+/* Astracare Space-Grade Dark Theme */
+QMainWindow, QWidget#CentralContainer {
+    background-color: #070a13;
+    color: #f3f4f6;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 13px;
+}
+
+/* Header & Footer Bars */
+QFrame#FlightHeader {
+    background-color: #0d1322;
+    border-bottom: 1px solid #1b2438;
+}
+
+QFrame#DisclaimerFooter {
+    background-color: #0d1322;
+    border-top: 1px solid #1b2438;
+}
+
+/* Sidebar Navigation */
+QListWidget#SideNav {
+    background-color: #0d1322;
+    border: none;
+    border-right: 1px solid #1b2438;
+    outline: none;
+    padding-top: 12px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+QListWidget#SideNav::item {
+    color: #9ca3af;
+    padding: 14px 18px;
+    margin: 4px 10px;
+    border-radius: 8px;
+}
+
+QListWidget#SideNav::item:hover {
+    background-color: #1b2438;
+    color: #ffffff;
+}
+
+QListWidget#SideNav::item:selected {
+    background-color: #00d2ff;
+    color: #070a13;
+    font-weight: 700;
+}
+
+/* Cards & Panels */
+QFrame#SpaceCard {
+    background-color: #0d1322;
+    border: 1px solid #1b2438;
+    border-radius: 12px;
+}
+
+QFrame#MetricTile {
+    background-color: #070a13;
+    border: 1px solid #1b2438;
+    border-radius: 8px;
+}
+
+/* Buttons */
+QPushButton {
+    background-color: #1b2438;
+    color: #f3f4f6;
+    border: 1px solid #2a3754;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-weight: 600;
+}
+
+QPushButton:hover {
+    background-color: #26334d;
+    border-color: #00d2ff;
+}
+
+QPushButton#PrimaryBtn {
+    background-color: #00d2ff;
+    color: #070a13;
+    border: none;
+    font-weight: 700;
+}
+
+QPushButton#PrimaryBtn:hover {
+    background-color: #38bdf8;
+}
+
+QPushButton#SosBtn {
+    background-color: #7f1d1d;
+    color: #fecaca;
+    border: 1px solid #ef4444;
+    font-weight: 700;
+}
+
+QPushButton#SosBtn:hover {
+    background-color: #dc2626;
+    color: #ffffff;
+}
+
+/* Status Pills & Badges */
+QLabel#OfflineBadge {
+    background-color: #070a13;
+    color: #00d2ff;
+    border: 1px solid #1b2438;
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-family: "Consolas", monospace;
+    font-weight: 700;
+    font-size: 12px;
+}
