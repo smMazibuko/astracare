@@ -7,13 +7,13 @@ namespace astracare {
 
 struct VitalReading {
     int id = 0;
-    std::string timestamp;   // ISO 8601, e.g. "2026-11-11T09:30:00Z"
-    int heartRate = 0;       // bpm
-    int systolic = 0;        // mmHg
-    int diastolic = 0;       // mmHg
-    double sleepHours = 0.0; // hours slept
-    int mood = 3;            // 1 (low) to 5 (high)
-    std::string symptoms;    // free text or comma-separated tags
+    std::string timestamp; // ISO 8601
+    int heartRate = 0;     // bpm
+    int systolic = 0;      // mmHg
+    int diastolic = 0;     // mmHg
+    double sleepHours = 0;
+    int mood = 0;          // 1 to 5
+    std::string symptoms; // free text
 };
 
 enum class AlertLevel { Normal, Caution, Urgent };

@@ -1,0 +1,55 @@
+
+{
+  "emergencies": [
+    {
+      "emergencyId": "emergency001",
+      "title": "Spacesuit Pressure Leak (EVA)",
+      "category": "spacesuit",
+      "severity": "critical",
+      "summary": "A spacesuit pressure leak during an EVA may threaten astronaut safety and require immediate termination of the spacewalk and return to the spacecraft.",
+      "steps": [
+        "Abort the spacewalk.",
+        "Return to the airlock.",
+        "Use the spacesuit's available contingency life-support capability, as applicable.",
+        "If the astronaut cannot return independently, initiate the applicable crew-rescue procedure.",
+        "Follow the mission-specific airlock recovery procedure."
+      ],
+      "source": "https://ntrs.nasa.gov/citations/20205008200",
+      "sourceNote": "Based on NASA Exploration EVA System Concept of Operations, Revision B, Section 9.1.1. Simplified summary; not an approved operational checklist."
+    },
+    {
+      "emergencyId": "emergency002",
+      "title": "Suspected Cardiac Arrest",
+      "category": "medical",
+      "severity": "critical",
+      "summary": "A suspected cardiac arrest requires immediate notification of the Crew Medical Officer and intervention by trained responders using approved onboard medical procedures.",
+      "steps": [
+        "Alert the Crew Medical Officer.",
+        "Assess the astronaut's responsiveness and breathing.",
+        "Notify other crew members and mission medical support.",
+        "If cardiac arrest is identified, trained responders follow the approved onboard CPR and resuscitation protocol.",
+        "Use appropriate onboard medical equipment under the applicable protocol.",
+        "Record the emergency and medical interventions."
+      ],
+      "source": "https://www.nasa.gov/reference/5-0-training/",
+      "sourceNote": "NASA-STD-3001 Volume 1, Revision C establishes medical training requirements. This response sequence is proposed for AstraCare and is not a NASA-certified cardiac-arrest checklist."
+    },
+    {
+      "emergencyId": "emergency003",
+      "title": "Spacecraft Depressurization",
+      "category": "spacecraft",
+      "severity": "critical",
+      "summary": "Loss of spacecraft cabin pressure requires prompt crew notification and implementation of the applicable spacecraft emergency procedure.",
+      "steps": [
+        "Recognize and report the depressurization emergency.",
+        "Follow the spacecraft's approved emergency procedure.",
+        "Don appropriate emergency protective equipment.",
+        "Isolate the affected module when directed by the procedure.",
+        "Coordinate with Mission Control.",
+        "Prepare for emergency evacuation if required."
+      ],
+      "source": "https://www.nasa.gov/blogs/spacestation/2019/01/15/station-trio-practices-emergency-before-radiation-physics-research/",
+      "sourceNote": "High-level summary based on NASA ISS emergency-response training information; not an exact NASA flight checklist."
+    }
+  ]
+}

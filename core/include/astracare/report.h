@@ -12,13 +12,15 @@ struct MedicalReport {
     std::string generatedAt;
     std::vector<VitalReading> readings;
     std::vector<Alert> alerts;
+    std::vector<std::string> guidanceIds;
     std::string notes;
 };
 
 class ReportBuilder {
 public:
-    // Plain-text/JSON form of a report. PDF export lives in the UI layer (Qt).
+    // Portable report formats. PDF export lives in the UI layer (Qt).
     static std::string toJson(const MedicalReport& report);
+    static std::string toCsv(const MedicalReport& report);
 };
 
 } // namespace astracare
