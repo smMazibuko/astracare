@@ -46,7 +46,7 @@ jobs:
         run: cmake --build build --config Release --parallel
 
       - name: Run tests
-        run: ctest --test-dir build --config Release --output-on-failure
+        run: ctest --test-dir build -C Release --output-on-failure
 
       - name: Package Windows application
         shell: pwsh
